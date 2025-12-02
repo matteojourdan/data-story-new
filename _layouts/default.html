@@ -8,7 +8,7 @@
 <!-- Sticky Navbar -->
 <nav class="navbar">
     <div class="navbar-container">
-        <h2 class="navbar-title">Data story</h2>
+        <a href="{% if site.navigation[0].url contains '://' %}{{ site.navigation[0].url }}{% else %}{{ site.navigation[0].url | relative_url }}{% endif %}" class="navbar-title">Data story</a>
         <ul class="navbar-links">
             {% for nav in site.navigation %}
             <li class="navbar-link-item">
