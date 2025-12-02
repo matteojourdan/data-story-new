@@ -1,0 +1,8 @@
+title: Mapping the immune response across time and severities in COVID-19 patients
+description: A template website for ADA
+show_downloads: True
+navigation:
+  - title: Home
+    url: /
+  - title: About
+    url: about.html

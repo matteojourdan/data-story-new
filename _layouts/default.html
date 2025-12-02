@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+</head>
+<!-- Sticky Navbar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <h2 class="navbar-title">Data story</h2>
+        <ul class="navbar-links">
+            {% for nav in site.navigation %}
+            <li class="navbar-link-item">
+                <a href="{% if nav.url contains '://' %}{{ nav.url }}{% else %}{{ nav.url | relative_url }}{% endif %}" class="navbar-link">
+                    {{ nav.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+<body>
+{{ content }}
+</body>
+</html>
