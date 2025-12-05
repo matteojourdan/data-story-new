@@ -1,7 +1,16 @@
 html, body {
-    margin: 0;
-    padding: 0;
+    margin-top: 32px;
+    margin-left:0;
+    margin-right:0;
+    background-color: #171717;
     font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root {
+    --bg: #171717;
+    --accent: #9FA8DA;
+    --text-light: #ffffff;
+    --border-light: #595959;
 }
 
 /* Sticky Navbar */
@@ -9,40 +18,59 @@ html, body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #171717; /* Dark background */
+    background-color: var(--bg); /* Dark background */
     padding-bottom: 1rem;
     padding-top: 1rem;
     z-index: 1000; /* Ensures the navbar stays above other content */
     border-bottom: 1px solid #595959;
 }
 
+/* Navbar Container */
 .navbar-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between left, center, and right */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
 }
 
-.navbar-title {
-    color: white;
+/* Left Section */
+.navbar-left {
+    flex: 1; /* Takes up available space on the left */
+}
+
+.navbar-title{
+    color: var(--text-light);
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
 }
 
-.navbar-links {
+/* Center Section */
+.navbar-links-center {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
+/* Right Section */
+.navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1; /* Takes up available space on the right */
+    justify-content: flex-end; /* Aligns links to the far right */
+}
+
+/* Navbar Link Items */
 .navbar-link-item {
     margin-left: 3rem;
 }
 
+/* Navbar Links */
 .navbar-link {
     color: white;
     text-decoration: none;
@@ -50,34 +78,118 @@ html, body {
 }
 
 .navbar-link:hover {
-    color: #a0aec0; /* Light gray on hover */
+    color: var(--accent);
 }
+
 
 /* Fullscreen Header */
 .fullscreen-header {
     width: 100%;
-    height: 100vh; /* Takes up the full viewport height */
+    height: 680px; /* Takes up the full viewport height */
     display: flex;
     align-items: center; /* Center vertically */
-    text-align: center; /* Center text */
-    background-color: #171717; /* Optional: Set a background color */
-    margin: 0;
+    background-color: var(--bg); /* Optional: Set a background color */
+    margin-top: 0;
     padding: 0;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .header-title {
     font-size:50px;
-    font-weight: 500;
+    font-weight: 800;
     text-align: left;
-    color: #fff; /* Set the text color */
+    color: var(--text-light); /* Set the text color */
     margin-left: 2rem;
     padding: 2rem ;
 }
 
 .header-image {
+    max-width: 500px; /* Optional: Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
     padding: 2rem;
     border-radius: 5rem;
+    margin-right: 2rem;
     opacity: 80%;
+}
+
+/* Page Container */
+.page-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    margin-top: 80px;
+    /*align-items: center; !* Center vertically *!*/
+    /*height: calc(100vh - 120px); /* Adjust for navbar height and any margins */
+    background-color: var(--bg);
+}
+
+/* Gallery Description */
+.gallery-title {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    text-align: center; /* Center the text */
+}
+
+.gallery-description {
+    color: var(--text-light); /* Text color */
+    font-size: 1.2rem; /* Font size */
+    font-weight: 400; /* Font weight */
+    margin-bottom: 30px; /* Space between the description and the button */
+    text-align: center; /* Center the text */
+}
+
+/* Home Button */
+.home-button {
+    color: var(--accent); /* Text color matching the border */
+    border: 1px solid var(--accent); /* Colored border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: inline-flex;
+    width: fit-content; /* Ensures the button width fits its content */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+/* Hover Effect */
+.home-button:hover {
+    background-color: var(--accent); /* Fill with color on hover */
+    color: white; /* Change text color to white for contrast */
+}
+
+/* Home Button Text */
+.home-button-text {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+/* Introduction Section */
+.introduction-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg);
+    color: white;
+}
+
+.introduction-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.introduction-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 h2 {

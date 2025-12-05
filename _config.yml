@@ -4,5 +4,13 @@ show_downloads: True
 navigation:
   - title: Home
     url: /
-  - title: About
-    url: about.html
+  - title: Introduction
+    url: "#introduction"
+  - title: Differential Analysis
+    url: "#diff_ana"
+  - title: Predictive Model
+    url: "#pred_mod"
+  - title: Gallery
+    url: /gallery
+  - title: Data
+    url: /data
