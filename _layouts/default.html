@@ -16,15 +16,36 @@
         <!-- Center: Section Links (e.g., Introduction) -->
         <ul class="navbar-links-center">
             {% for nav in site.navigation %}
-            {% if nav.url contains '#' %}
-            <li class="navbar-link-item">
-                <a href="{{ nav.url }}" class="navbar-link">{{ nav.title }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
+            {% if nav.sublinks %}
+            <li class="navbar-link-item dropdown">
+                    {% if page.url == "/" or page.url == "/index.html" %}
+                        <a href="{{ nav.url }}" class="navbar-link">{{ nav.title }}</a>
+                    {% else %}
+                        <a href="{{ '/' | relative_url }}{{ nav.url }}" class="navbar-link">{{ nav.title }}</a>
+                    {% endif %}
+                    <div class="dropdown-content">
+                        {% for sub in nav.sublinks %}
+                            {% if page.url == "/" or page.url == "/index.html" %}
+                                <a href="{{ sub.url }}">{{ sub.title }}</a>
+                            {% else %}
+                                <a href="{{ '/' | relative_url }}{{ sub.url }}">{{ sub.title }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+                {% elsif nav.url contains '#' %}
+                <li class="navbar-link-item">
+                    {% if page.url == "/" or page.url == "/index.html" %}
+                        <a href="{{ nav.url }}" class="navbar-link">{{ nav.title }}</a>
+                    {% else %}
+                        <a href="{{ '/' | relative_url }}{{ nav.url }}" class="navbar-link">{{ nav.title }}</a>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
 
-        <!-- Right: Other Links (e.g., Gallery) -->
+            <!-- Right: Other Links (e.g., Gallery) -->
         <ul class="navbar-links">
             {% for nav in site.navigation %}
             {% unless nav.url contains '#' or forloop.first %}

@@ -1,11 +1,14 @@
-title: Mapping the Immune Response across Time and Severities in COVID-19 patients
+title: Mapping the Immune Response across Time and Severities in COVID-19 Patients
 description: A template website for ADA
 show_downloads: True
 navigation:
-  - title: Home
-    url: /
   - title: Introduction
     url: "#introduction"
+    sublinks:
+      - title: Research questions
+        url: "#research_questions"
+      - title: Data presentation
+        url: "#data_presentation"
   - title: Differential Analysis
     url: "#diff_ana"
   - title: Predictive Model
