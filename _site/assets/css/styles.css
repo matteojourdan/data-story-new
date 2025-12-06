@@ -18,11 +18,16 @@ html, body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--bg); /* Dark background */
+    background-color: #252323; /* Dark background */
     padding-bottom: 1rem;
     padding-top: 1rem;
     z-index: 1000; /* Ensures the navbar stays above other content */
     border-bottom: 1px solid #595959;
+
+}
+
+.navbar:before {
+    box-shadow: 1px 0.5px 10px var(--accent);
 }
 
 /* Navbar Container */
@@ -89,7 +94,7 @@ html, body {
     height: 680px; /* Takes up the full viewport height */
     display: flex;
     align-items: center; /* Center vertically */
-    background-color: var(--bg); /* Optional: Set a background color */
+    justify-content: center; /* Center horizontally */
     margin-top: 0;
     padding: 0;
     border-bottom: 1px solid var(--border-light);
@@ -105,12 +110,12 @@ html, body {
 }
 
 .header-image {
+    bottom: -80px;
     max-width: 500px; /* Optional: Set a maximum width */
     height: auto; /* Maintain aspect ratio */
     padding: 2rem;
-    border-radius: 5rem;
+    border-radius: 4rem;
     margin-right: 2rem;
-    opacity: 80%;
 }
 
 /* Page Container */
