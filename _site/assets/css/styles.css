@@ -199,15 +199,116 @@ html, body {
     text-align: justify;
 }
 
+/* Intro Section */
+.introduction-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    width: 100%;
+    max-width: 1180px;
+    overflow: hidden;
+    background-color: var(--bg);
+    color: white;
+}
+
+.introduction-section h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.introduction-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    padding-left: 450px;
+    text-align: justify;
+}
+
+.intro-paper-snippet {
+    position: absolute;
+    top: -40px; /* Overlap the line above */
+    left: -100px; /* Overflow to the left */
+    width: 400px; /* Adjust size as needed */
+    height: auto;
+    opacity: 0.8;
+    border-radius: 10px;
+    z-index: 1;
+    pointer-events: none; /* Let clicks pass through to text if any */
+}
+
 h2 {
     font-weight: 700;
+}
+
+/* Research Questions */
+.research-questions-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1070px; /* Limit width for readability */
+}
+
+.research-question {
+    display: flex;
+    /*background-color: red;*/
+    align-items: center; /* Align number with top of text */
+    margin-bottom: 4rem;
+    width: 58%; /* Give space for the stagger effect */
+}
+
+.research-question.left {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.research-question.right {
+    align-self: flex-end;
+    text-align-last: right; /* Keep text left aligned even if container is right */
+    flex-direction: row-reverse; /* Put number on right for variety, or keep row for consistency. Request implies placement of block, not text direction. */
+}
+
+
+
+.question-number {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    /* margin-right is for left alignment, we need margin-left for right alignment */
+    margin-right: 2rem;
+    flex-shrink: 0; /* Prevent number from squishing */
+}
+
+/* Add specific margin for the right-aligned question number */
+.research-question.right .question-number {
+    margin-right: 0;
+    margin-left: 2rem;
+}
+
+.research-question.right p {
+    font-size: 1.5rem; /* Larger text */
+    margin: 0;
+    padding: 0; /* Override generic section padding */
+    /* Remove specific text-align: left here so it inherits from parent */
+    text-align: right;
+}
+
+.research-question.left p {
+    font-size: 1.5rem; /* Larger text */
+    margin: 0;
+    padding: 0; /* Override generic section padding */
+    /* Remove specific text-align: left here so it inherits from parent */
+    text-align: left;
 }
 
 a {
     text-decoration: none;
 }
 
-/* Dropdown styles */
+    /* Dropdown styles */
 .dropdown {
     position: relative;
     display: inline-block;
