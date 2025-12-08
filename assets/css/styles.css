@@ -308,17 +308,26 @@ h2 {
     align-items: center; /* Align number with top of text */
     margin-bottom: 4rem;
     width: 58%; /* Give space for the stagger effect */
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .research-question.left {
     align-self: flex-start;
     text-align: left;
+    transform: translateX(-100px);
 }
 
 .research-question.right {
     align-self: flex-end;
     text-align-last: right; /* Keep text left aligned even if container is right */
     flex-direction: row-reverse; /* Put number on right for variety, or keep row for consistency. Request implies placement of block, not text direction. */
+    transform: translateX(100px);
+}
+
+.research-question.in-view {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 
