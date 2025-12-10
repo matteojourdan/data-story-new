@@ -33,24 +33,65 @@ title: Home
     <div class="research-questions-container">
         <div class="research-question left">
             <span class="question-number">1.</span>
-            <p>Can we identify and score the importance of key genes and cells participating in the immune response to COVID-19.</p>
+            <p>Can we identify and score key genes and cells participating in the immune response to COVID-19?</p>
         </div>
         <div class="research-question right">
             <span class="question-number">2.</span>
-            <p>How do gene expression patterns within key immune cell types vary with disease severity?</p>
+            <p>Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?</p>
         </div>
         <div class="research-question left">
             <span class="question-number">3.</span>
-            <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict their vulnerability to severe COVID-19?</p>
+            <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?</p>
         </div>
     </div>
 </section>
 
 <!-- Gallery Section -->
 
-<section id="data_presentation" class="data-section">
-    <h2>Data presentation</h2>
-    <p>Data presentation content</p>
+<section id="data_exploration" class="data-section">
+    <h2>Data Exploration</h2>
+    <div class="data-column">
+        <p>In this rich single-cell multi-omics dataset, the first component we examined was the
+            <span>patients’ clinical metadata:</span> age, sex, disease severity, and days from
+            symptom onset. We focused particularly on Worst_Clinical_Status, a severity scale ranging
+            from Asymptomatic to Death, which became a central framing variable in our analysis. By
+            visualizing how the other metadata features were distributed across these severity
+            categories, we gained an initial qualitative understanding of how patient characteristics
+            relate to clinical outcomes.
+            This early exploration revealed clear imbalances in the number of patients across severity
+            groups as well as uneven sampling across the days from symptom onset. To address this and
+            ensure that our later analyses would be meaningful and comparable, we applied preprocessing
+            steps aimed at balancing these distributions. The figure on the right illustrates the
+            resulting dataset structure, showing how samples are distributed across the severity groups
+            and within our chosen symptom-onset time bins.</p>
+        <img class="data-exploration-image" src="/assets/img/severity_by_days_from_onset.png" alt="severity by days from onset"/>
+    </div>
+    <div class="data-column">
+        <div class="data-double-image">
+            <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
+            <img class="data-exploration-image" src="/assets/img/temporal_ISG_expr.png" alt="temporal ISG expression"/>
+        </div>
+
+        <p>After exploring the patients' metadata, we wanted to familiarize ourselves with the <span>gene
+        expression levels of different immune cell types, in time.</span> To do so, we hand-picked
+        single genes known to play key roles in antiviral and inflammatory responses, namely ISG15,
+        IFITM3, MX1, and other classical interferon-stimulated genes (ISGs). Their expression levels
+        were then plotted across major immune families and across severities, as shown by the first plot
+        on the left. This visualization confirmed that Worst_Clinical_Status was a more
+        meaningful severity variable than Status_on_day_collection.
+        These trends also gave us a sense of which immune families show the strongest
+        severity-linked responses, guiding the choices we made later when selecting cell types
+        and genes for our downstream immune activation analyses. <br/>
+        Lastly, we wanted to examine the <span>temporal trajectories</span> of these interferon-stimulated
+        genes using our predefined time bins. We can see in the second plot on the left that these
+        markers exhibit clear temporal dynamics that differ across severities. This hints towards
+        the potential for interesting results from our downstream analyses of COVID-19 infection trajectories.</p>
+
+    </div>
+    <div class="data-column">
+
+
+    </div>
 </section>
 
 <section id="diff_ana" class="page-section">

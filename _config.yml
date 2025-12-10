@@ -7,8 +7,8 @@ navigation:
     sublinks:
       - title: Research questions
         url: "#research_questions"
-      - title: Data presentation
-        url: "#data_presentation"
+      - title: Data Exploration
+        url: "#data_exploration"
   - title: Differential Analysis
     url: "#diff_ana"
   - title: Predictive Model
