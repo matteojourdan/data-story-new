@@ -21,24 +21,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Floating Research Question Logic
     const sidebar = document.getElementById('sidebar-question');
     const sidebarText = document.getElementById('sidebar-question-text');
+    const sidebarTitle = document.getElementById('sidebar-question-title');
 
     const sections = [
         {
             id: 'diff_ana',
-            text: '1. Can we identify and score key genes and cells participating in the immune response to COVID-19?'
+            title: '1.',
+            text: 'Can we identify and score key genes and cells participating in the immune response to COVID-19?'
         },
         {
             id: 'temp_ana',
-            text: '2. Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?'
+            title: '2.',
+            text: 'Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?'
         },
         {
             id: 'pred_mod',
-            text: '3. Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?'
+            title: '3.',
+            text: 'Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?'
         }
     ];
 
     function updateSidebar() {
-        if (!sidebar || !sidebarText) return;
+        if (!sidebar || !sidebarText || !sidebarTitle) return;
 
         let activeSection = null;
         const viewportHeight = window.innerHeight;
@@ -58,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (activeSection) {
+            sidebarTitle.textContent = activeSection.title;
             sidebarText.textContent = activeSection.text;
             sidebar.classList.add('visible');
         } else {
