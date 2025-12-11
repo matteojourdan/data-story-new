@@ -233,15 +233,15 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 20px;
-    margin: 0 auto;
+    padding: 0 116px;
+    margin-top: -50px;
     background-color: var(--bg);
     color: white;
 }
 
 .page-section h2 {
     font-size: 3.5rem;
-    margin-bottom: 20px;
+    padding-top: 100px;
     color: var(--text-light);
 }
 
@@ -370,7 +370,7 @@ h2 {
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    padding: 20px 116px;
+    padding: 0 116px;
     background-color: var(--bg);
     color: white;
 }
@@ -414,6 +414,45 @@ h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
+}
+
+/* Floating Research Question Sidebar */
+.sidebar-question {
+    position: fixed;
+    top: 10%;
+    right: -20%;
+    transform: translateX(0);
+    width: 300px;
+    padding: 20px;
+    background-color: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+
+.sidebar-question:hover {
+    transform: translateX(-50%);;
+}
+
+.sidebar-question.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-question h2 {
+    font-size: 3.5rem;
+}
+
+.sidebar-question p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+    text-align: left;
 }
 
 a {

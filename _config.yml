@@ -11,6 +11,8 @@ navigation:
         url: "#data_exploration"
   - title: Differential Analysis
     url: "#diff_ana"
+  - title: Temporal Analysis
+    url: "#temp_ana"
   - title: Predictive Model
     url: "#pred_mod"
   - title: Gallery
