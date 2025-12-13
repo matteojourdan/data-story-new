@@ -234,7 +234,7 @@ html, body {
     background-color: var(--bg);
     margin: 0 0;
     padding: 0 116px;
-    padding-top: 40px;
+    padding-top: 2rem;
     color: white;
 }
 

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let activeSection = null;
         const viewportHeight = window.innerHeight;
         // Check point: middle of the screen
-        const checkPoint = viewportHeight / viewportHeight;
+        const checkPoint = viewportHeight/12;
 
         for (const section of sections) {
             const element = document.getElementById(section.id);
