@@ -256,6 +256,7 @@ a {
     justify-content: right;
     align-items: end;
     width: 100%;
+    padding-top: 32px;
     max-width: 1186px;
     overflow: hidden;
     color: white;
