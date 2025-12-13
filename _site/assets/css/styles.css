@@ -144,6 +144,7 @@ a {
     width: 100%;
     height: 100dvh; /* Takes up the full viewport height */
     display: flex;
+    flex-direction: row;
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
     margin-top: 0;
@@ -154,7 +155,7 @@ a {
 .header-title {
     font-size:50px;
     font-weight: 800;
-    text-align: left;
+    text-align: center;
     color: var(--text-light); /* Set the text color */
     margin-left: 2rem;
     padding: 2rem ;
