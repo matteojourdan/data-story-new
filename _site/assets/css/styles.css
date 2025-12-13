@@ -457,3 +457,25 @@ a {
     line-height: 1.5;
     text-align: left;
 }
+
+/*Graphs*/
+
+.tooltip {
+    position: absolute;
+    background: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.figure-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <link rel="stylesheet" href="/assets/css/onset_hist.css?v=">
 </head>
 <!-- Sticky Navbar -->
 <nav class="navbar">
@@ -168,7 +169,31 @@
             steps aimed at balancing these distributions. The second figure on the right illustrates the
             resulting dataset structure, showing how samples are distributed across the severity groups
             and within our chosen symptom-onset time bins.</p>
-        <img class="data-exploration-image" src="/assets/img/severity_by_days_from_onset.png" alt="severity by days from onset"/>
+
+        <div class="data-exploration-image">
+            <section id="onset">
+                <!-- Controls -->
+                <div id="controls" class="#controls">
+                    <label for="severitySelect" class="label">Severity:</label>
+                    <select id="severitySelect" class="select"></select>
+                </div>
+
+                <!-- Optional legend (JS expects it) -->
+                <div id="legend" class="#legend"></div>
+
+                <!-- Chart container (REQUIRED) -->
+                <div id="chart" class="#chart"></div>
+
+                <!-- Tooltip -->
+                <div id="tooltip" class="tooltip"></div>
+
+                <div class="figure-title">
+                    <h3>Fig. 1: </h3>
+                    <p>Distribution of patients in days from onset, across severities</p>
+                </div>
+
+            </section>
+        </div>
     </div>
     <div class="data-column">
         <div class="data-double-image">
@@ -233,5 +258,11 @@
 </div>
 
 <script src="/assets/js/scroll-animations.js"></script>
+
+<!-- D3 -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- Your radar plot logic -->
+<script src="/assets/js/onset_hist.js"></script>
 </body>
 </html>

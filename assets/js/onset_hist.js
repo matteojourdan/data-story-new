@@ -5,7 +5,7 @@ const severityColor = {
   "Moderate":     "#ff9900", // orange
   "Severe":       "#ff6633", // deep orange
   "Critical":     "#ff0000", // red
-  "Death":        "#000000", // black
+  "Death":        "#ffffff", // black
 
   // fallback / non-covid / unknown
   "Unknown":   "#3b82f6",
@@ -29,28 +29,27 @@ const clinicalOrder = [
   "Nan"
 ];
 
-const severityDot = {
-  "Healthy":      "🟢",
-  "Asymptomatic": "🟢",
-  "Mild":         "🟡",
-  "Moderate":     "🟠", 
-  "Severe":       "🟠",
-  "Critical":     "🔴",
-  "Death":        "⚫",
-  "Unknown":      "🔵",
-  "Non covid":    "🔵",
-  "Non_covid":    "🔵"
-};
+// const severityDot = {
+//   "Healthy":      "🟢",
+//   "Asymptomatic": "🟢",
+//   "Mild":         "🟡",
+//   "Moderate":     "🟠",
+//   "Severe":       "🟠",
+//   "Critical":     "🔴",
+//   "Death":        "⚪",
+//   "Unknown":      "🔵",
+//   "Non covid":    "🔵",
+//   "Non_covid":    "🔵"
+// };
 
 // ---------------------------------------------------------------------------
 // LOAD DATA
 // ---------------------------------------------------------------------------
-d3.json("days_severity.json").then(data => {
+d3.json("/assets/data/days_severity.json").then(data => {
   console.log("Loaded:", data.length, "records.");
 
   const tooltip = d3.select("#tooltip");
   const severitySelect = document.getElementById("severitySelect");
-  const legend = document.getElementById("legend");
 
   
   const unwanted = new Set(["Nan", "nan", "NaN", "", null, undefined]);
@@ -59,7 +58,7 @@ d3.json("days_severity.json").then(data => {
  // Apply clinical order
   uniqSev = clinicalOrder.filter(s => uniqSev.includes(s));
   // Filter unwanted severities
-  
+
 
   // Build dropdown
   severitySelect.innerHTML = "";
@@ -75,22 +74,17 @@ d3.json("days_severity.json").then(data => {
     const opt = document.createElement("option");
     opt.value = sev;
 
-    const color = severityColor[sev] || "#3b82f6";
-    opt.textContent = `${severityDot[sev] || "🔵"}  ${sev}`;   // bullet + label
-    opt.style.setProperty("--dotcolor", color);
-    opt.style.color = "black";         // always black text
-    opt.style.paddingLeft = "4px";
-    opt.dataset.color = color;         // save color for later
+    opt.textContent = `${sev}`;   // bullet + label
     severitySelect.appendChild(opt);
   });
 
-  
+
 
   // -------------------------------------------------------------------------
   // SVG setup
   // -------------------------------------------------------------------------
   const margin = { top: 20, right: 20, bottom: 40, left: 60 };
-  const width = 900 - margin.left - margin.right;
+  const width = 500 - margin.left - margin.right;
   const height = 500 - margin.top - margin.bottom;
 
   const svg = d3.select("#chart")
