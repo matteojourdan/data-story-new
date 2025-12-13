@@ -11,6 +11,10 @@ html, body {
     --border-light: #595959;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Sticky Navbar */
 .navbar {
     position: fixed;
@@ -22,10 +26,6 @@ html, body {
     z-index: 1000; /* Ensures the navbar stays above other content */
     border-bottom: 1px solid #595959;
 
-}
-
-.navbar:before {
-    box-shadow: 1px 0.5px 10px var(--accent);
 }
 
 /* Navbar Container */
@@ -100,7 +100,7 @@ html, body {
     margin-top: 10px;
     background-color: var(--bg);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 4px;
     border: 1px solid var(--border-light);
@@ -233,8 +233,7 @@ html, body {
     align-items: center;
     background-color: var(--bg);
     margin: 0 0;
-    padding: 0 116px;
-    padding-top: 2rem;
+    padding: 32px 116px 0 116px; /* top, right, bottom, left */
     color: white;
 }
 
@@ -244,7 +243,7 @@ html, body {
 }
 
 .page-section p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     text-align: justify;
 }
@@ -285,10 +284,6 @@ html, body {
     border-radius: 10px;
     z-index: 1;
     pointer-events: none; /* Let clicks pass through to text if any */
-}
-
-h2 {
-    font-weight: 700;
 }
 
 /* Research Questions */
@@ -433,7 +428,6 @@ h2 {
     background-color: var(--bg);
     border: 2px solid var(--accent);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     z-index: 900;
     opacity: 0;
     visibility: hidden;
@@ -461,8 +455,4 @@ h2 {
     margin: 0;
     line-height: 1.5;
     text-align: left;
-}
-
-a {
-    text-decoration: none;
 }
