@@ -84,13 +84,17 @@ d3.json("/assets/data/days_severity.json").then(data => {
   // SVG setup
   // -------------------------------------------------------------------------
   const margin = { top: 20, right: 20, bottom: 40, left: 60 };
-  const width = 500 - margin.left - margin.right;
-  const height = 500 - margin.top - margin.bottom;
+  const container = document.getElementById("chart");
+  const fallback = Math.round(window.innerWidth * 0.4);
+  const outerWidth = Math.min(520, Math.max(260, container?.clientWidth || fallback));
+  const outerHeight = Math.round(outerWidth * 0.9);
+  const width = outerWidth - margin.left - margin.right;
+  const height = outerHeight - margin.top - margin.bottom;
 
   const svg = d3.select("#chart")
     .append("svg")
-    .attr("width", 900)
-    .attr("height", 500)
+    .attr("width", outerWidth)
+    .attr("height", outerHeight)
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
