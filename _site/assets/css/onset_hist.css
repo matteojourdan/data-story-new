@@ -1,0 +1,73 @@
+/* ONLY applies inside the onset plot */
+#onset #chart {
+    width: 40vw;
+    max-width: 400px;
+    min-width: 210px;
+    height: auto;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+#onset #controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+#onset #severitySelect {
+    margin-left: 10px;
+    color: var(--text-light);
+    background-color: var(--bg);
+    border: 1px solid var(--text-light);
+}
+
+/* Style the select when focused */
+#onset #severitySelect:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+#onset .label {
+    color: var(--text-light);
+}
+
+#onset .bar {
+    opacity: 0.4;
+}
+
+#onset .bar:hover {
+    opacity: 0.8;
+}
+
+#onset #legend {
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+#onset .legend-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+#onset .severity-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+#onset h3 {
+    font-style: italic;
+}
+
+#onset p {
+    font-size: 1rem;
+    color: var(--text-light);
+}

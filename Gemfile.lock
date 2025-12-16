@@ -12,8 +12,13 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
+    ffi (1.17.2)
     ffi (1.17.2-arm64-darwin)
     forwardable-extended (2.6.0)
+    google-protobuf (4.33.1)
+      bigdecimal
+      rake (>= 13)
     google-protobuf (4.33.1-arm64-darwin)
       bigdecimal
       rake (>= 13)
@@ -63,6 +68,9 @@ GEM
     rexml (3.4.4)
     rouge (4.6.1)
     safe_yaml (1.0.5)
+    sass-embedded (1.94.2)
+      google-protobuf (~> 4.31)
+      rake (>= 13)
     sass-embedded (1.94.2-arm64-darwin)
       google-protobuf (~> 4.31)
     terminal-table (3.0.2)
@@ -72,6 +80,7 @@ GEM
 
 PLATFORMS
   arm64-darwin
+  x64-mingw32
 
 DEPENDENCIES
   jekyll

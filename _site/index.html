@@ -1,27 +1,98 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <link rel="stylesheet" href="/assets/css/onset_hist.css?v=">
+    <link rel="icon" href="/assets/img/coronavirus.png" type="image/png">
 </head>
 <!-- Sticky Navbar -->
 <nav class="navbar">
     <div class="navbar-container">
-        <h2 class="navbar-title">Data story</h2>
+        <!-- Left: Data Story -->
+        <div class="navbar-left">
+            <a href="/#introduction" class="navbar-title">Data story</a>
+        </div>
+
+        <!-- Center: Section Links (e.g., Introduction) -->
+        <ul class="navbar-links-center">
+            
+            
+            <li class="navbar-link-item dropdown">
+                    
+                        <a href="#introduction" class="navbar-link">Introduction</a>
+                    
+                    <div class="dropdown-content">
+                        
+                            
+                                <a href="#research_questions">Research questions</a>
+                            
+                        
+                            
+                                <a href="#data_exploration">Data Exploration</a>
+                            
+                        
+                    </div>
+                </li>
+                
+                
+            
+                <li class="navbar-link-item">
+                    
+                        <a href="#diff_ana" class="navbar-link">Differential Analysis</a>
+                    
+                </li>
+                
+                
+            
+                <li class="navbar-link-item">
+                    
+                        <a href="#temp_ana" class="navbar-link">Temporal Analysis</a>
+                    
+                </li>
+                
+                
+            
+                <li class="navbar-link-item">
+                    
+                        <a href="#pred_mod" class="navbar-link">Predictive Model</a>
+                    
+                </li>
+                
+                
+            
+                
+            
+                
+            </ul>
+
+            <!-- Right: Other Links (e.g., Gallery) -->
         <ul class="navbar-links">
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <li class="navbar-link-item">
-                <a href="/" class="navbar-link">
-                    Home
+                <a href="/gallery" class="navbar-link">
+                    Gallery
                 </a>
             </li>
             
+            
+            
             <li class="navbar-link-item">
-                <a href="/about.html" class="navbar-link">
-                    About
+                <a href="/data" class="navbar-link">
+                    Data
                 </a>
             </li>
+            
             
         </ul>
     </div>
@@ -29,13 +100,226 @@
 <body>
 <div class="fullscreen-header">
     <header class="fullscreen-header">
-        <h1 class="header-title">Mapping the immune response across time and severities in COVID-19 patients</h1>
+        <h1 class="header-title">Mapping the Immune Response across Time and Severities in COVID-19 Patients</h1>
     </header>
 
     <p><img class="header-image" src="/assets/img/cool_cell.jpg" alt="cool cell"></p>
 </div>
 
+<section id="introduction" class="introduction-section">
+    <img class="intro-paper-snippet" src="/assets/img/paper_snippet.png" alt="paper snippet">
+    <h2>Introduction</h2>
+    <p>Understanding why COVID-19 affects patients so differently, and the immunological differences explaining it,
+        is crucial for developing effective, personalized treatments.
+        To investigate these differences, we analyze a comprehensive single-cell multi-omics dataset profiling more
+        than 780,000 immune cells from 130 patients spanning the full spectrum of COVID-19 severity. From this dataset
+        we analyze how immune cell populations vary, along with their gene expression levels,
+        and how these changes relate to the progression and intensity of the infection.
+        Our final goal is to create a predictive model that can use a patient's immune profile, combined with their
+        intrinsic data (age, sex, lifestyle factors), to predict an individual’s vulnerability to severe
+        COVID-19 and tailor their treatment.</p>
+    <p>This website walks you through our data analysis, from cleaning and
+        visualizing the data, to identifying and scoring mechanisms linked with disease severity, to finally training
+        a predictive model with what we found.</p>
+</section>
 
-<h1>hello world!</h1>
+<section id="research_questions" class="page-section">
+    <h2>Research questions</h2>
+    <div class="research-questions-container">
+        <div class="research-question left">
+            <span class="question-number">1.</span>
+            <p>Can we identify and score key genes and cells participating in the immune response to COVID-19?</p>
+        </div>
+        <div class="research-question right">
+            <span class="question-number">2.</span>
+            <p>Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?</p>
+        </div>
+        <div class="research-question left">
+            <span class="question-number">3.</span>
+            <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?</p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+
+<section id="data_exploration" class="data-section">
+    <h2>Data Exploration</h2>
+    <div class="data-column">
+        <p>The first step we took in our analysis was to understand who the patients
+            in the dataset are. To get a broad view of the cohort, we explored the
+            <span>patients’ clinical metadata</span> such as age, sex, and sample collection site.
+            This initial overview revealed important information in how patients were distributed
+            across these categories. For example, male and female patients were nearly
+            equally represented, while age, smoking status, and sample collection site were notably
+            imbalanced. In particular, samples from older, non-smoking adults at the Ncl collection
+            site made up a large portion of the dataset. This distribution is shown Fig. 1 on the right.
+
+            <br/>
+            We then focused our attention on <span>severity and days from onset</span>, as these were
+            key variables for our
+            project. By visualizing different combinations of these features and how they relate
+            to patient characteristics, we gained an initial qualitative sense of the dataset’s structure
+            and dynamics.
+            However, we found that most patients were captured within the first
+            two weeks of illness and belonged to the Mild and Moderate severity groups. This revealed
+            clear imbalances in the number of patients across severity
+            groups as well as uneven sampling across the days from symptom onset. To address this and
+            ensure meaningful and comparable downstream analysis, we applied preprocessing
+            steps aimed at balancing these distributions. The second figure on the right illustrates the
+            resulting dataset structure, showing how samples are distributed across the severity groups
+            and within our chosen symptom-onset time bins.</p>
+
+        <div class="data-exploration-image">
+            <section id="onset">
+                <!-- Controls -->
+                <div id="controls" class="#controls">
+                    <label for="severitySelect" class="label">Severity:</label>
+                    <select id="severitySelect" class="select"></select>
+                </div>
+
+                <!-- Optional legend (JS expects it) -->
+                <div id="legend" class="#legend"></div>
+
+                <!-- Chart container (REQUIRED) -->
+                <div id="chart" class="#chart"></div>
+
+                <!-- Tooltip -->
+                <div id="tooltip" class="tooltip"></div>
+
+                <div class="figure-title">
+                    <h3>Fig. 1: </h3>
+                    <p>Distribution of patients in days from onset, across severities</p>
+                </div>
+
+            </section>
+        </div>
+    </div>
+    <div class="data-column">
+        <div class="data-double-image">
+            <div class="data-exploration-figure">
+                <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
+                <div class="figure-title">
+                    <h3>Fig. 2:</h3>
+                    <p>ISG expression across immune families and severity groups</p>
+                </div>
+            </div>
+            <section id="markers">
+                <!-- Controls -->
+                <div class="controls">
+                    <label for="geneDropdown">Gene:</label>
+                    <select id="geneDropdown" class="select"></select>
+                    
+                    <label for="showOutlierToggle">Show Outlier:</label>
+                    <input type="checkbox" id="showOutlierToggle">
+                </div>
+                
+                <div class="controls">
+                    <label>Display Mode:</label>
+                    <label><input type="radio" name="lineMode" value="mean" checked> Mean</label>
+                    <label><input type="radio" name="lineMode" value="regression"> Regression</label>
+                    <label><input type="radio" name="lineMode" value="both"> Both</label>
+                </div>
+                
+                <!-- Visualization container -->
+                <div id="vis"></div>
+                
+                <div class="figure-title">
+                    <h3>Fig. 3: </h3>
+                    <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
+                </div>
+            </section>
+        </div>
+
+        <p>After exploring the patients' metadata, we wanted to familiarize ourselves with the <span>gene
+        expression levels of different immune cell types, in time.</span> To do so, we hand-picked
+        single genes known to play key roles in antiviral and inflammatory responses, namely ISG15,
+        IFITM3, MX1, and other ISGs. Their expression levels
+        were then plotted across major immune families and across severities, as shown by the first plot
+        on the left. This visualization confirmed that Worst_Clinical_Status was a more
+        meaningful severity variable than Status_on_day_collection.
+        These trends also gave us a sense of which immune families show the strongest
+        severity-linked responses, guiding the choices we made later when selecting cell types
+        and genes for our downstream immune activation analyses. <br/>
+        Lastly, we wanted to examine the <span>temporal trajectories</span> of these interferon-stimulated
+        genes using our predefined time bins. We can see in the second plot on the left that these
+        markers exhibit clear temporal dynamics that differ across severities. This hints towards
+        the potential for interesting results from our downstream analyses of COVID-19 infection trajectories. 
+        It also allowed us to identify an important outlier which can be displayed using the toggle on figure 3.</p>
+
+    </div>
+</section>
+
+<section id="diff_ana" class="page-section">
+    <h2>Differential Analysis</h2>
+    <p>
+
+By examining the dataset, we noticed it contained negative values, which confirmed the data was scaled.
+Because differential expression analysis requires untransformed UMI counts, these processed values are not appropriate.
+The raw layer, shown in the middle pannel, provides the correct unprocessed data for further analysis. 
+The goal of the transformations was to help with clustering. After getting back the raw data, we apply a log transformation.
+This helps to stabilize variance and make the data more interpretable for differential expression analysis.
+
+
+We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
+Our approach is to use a linear regression model for each gene’s expression across cells and patients.
+We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level 
+by summing counts across cells within specific immune cell families.
+By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
+while still capturing the key variability in gene expression related to disease severity.
+    </p>
+    
+    <div class="data-exploration-figure">
+        <img class="da-image" src="/assets/img/histograms raw.png" alt="Raw data histogram"/>
+        <div class="figure-title">
+            <h3>Fig. 4:</h3>
+            <p>Distribution of scaled and raw UMI counts</p>
+        </div>
+    </div>
+</section>
+
+<section id="temp_ana" class="page-section">
+    <h2>Temporal Analysis</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+    </p>
+</section>
+
+<section id="pred_mod" class="page-section">
+    <h2>Predictive Model</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+    </p>
+</section>
+
+<div id="sidebar-question" class="sidebar-question">
+    <h2 id="sidebar-question-title"></h2>
+    <p id="sidebar-question-text"></p>
+</div>
+
+<script src="/assets/js/scroll-animations.js"></script>
+
+<!-- D3 -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- Vega-Lite for markers visualization -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<!-- Your radar plot logic -->
+<script src="/assets/js/onset_hist.js"></script>
+
+<!-- Markers visualization -->
+<link rel="stylesheet" href="/assets/css/markers.css">
+<script src="/assets/js/markers.js"></script>
 </body>
 </html>
