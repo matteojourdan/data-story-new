@@ -155,7 +155,7 @@ a {
 .header-title {
     font-size:50px;
     font-weight: 800;
-    text-align: center;
+    text-align: left;
     color: var(--text-light); /* Set the text color */
     margin-left: 2rem;
     padding: 2rem ;
@@ -423,7 +423,7 @@ a {
     gap: 24px;
     position: fixed;
     top: 10%;
-    right: -24.5%;
+    right: -320px;
     transform: translateX(0);
     width: 350px;
     padding: 0 20px;
