@@ -8,11 +8,11 @@ title: Home
         <h1 class="header-title">{{ site.title | default: site.github.repository_name }}</h1>
     </header>
 
-    <p><img class="header-image" src="/assets/img/cool_cell.jpg" alt="cool cell"></p>
+    <p><img class="header-image" src="{{ '/assets/img/cool_cell.jpg' | relative_url }}" alt="cool cell"></p>
 </div>
 
 <section id="introduction" class="introduction-section">
-    <img class="intro-paper-snippet" src="/assets/img/paper_snippet.png" alt="paper snippet">
+    <img class="intro-paper-snippet" src="{{ '/assets/img/paper_snippet.png' | relative_url }}" alt="paper snippet">
     <h2>Introduction</h2>
     <p>Understanding why COVID-19 affects patients so differently, and the immunological differences explaining it,
         is crucial for developing effective, personalized treatments.
