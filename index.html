@@ -12,7 +12,7 @@ title: Home
 </div>
 
 <section id="introduction" class="introduction-section">
-    <img class="intro-paper-snippet" src="/assets/img/paper_snippet.png" alt="paper snippet">
+    <img class="intro-paper-snippet" src="{{ '/assets/img/paper_snippet.png' | relative_url }}" alt="paper snippet">
     <h2>Introduction</h2>
     <p>Understanding why COVID-19 affects patients so differently, and the immunological differences explaining it,
         is crucial for developing effective, personalized treatments.
@@ -102,8 +102,8 @@ title: Home
     </div>
     <div class="data-column">
         <div class="data-double-image">
-            <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
-            <img class="data-exploration-image" src="/assets/img/temporal_ISG_expr.png" alt="temporal ISG expression"/>
+            <img class="data-exploration-image" src="{{ '/assets/img/expr_levels_ISG.png' | relative_url }}" alt="ISG expression levels"/>
+            <img class="data-exploration-image" src="{{ '/assets/img/temporal_ISG_expr.png' | relative_url }}" alt="temporal ISG expression"/>
         </div>
 
         <p>After exploring the patients' metadata, we wanted to familiarize ourselves with the <span>gene
@@ -165,7 +165,7 @@ title: Home
 <script src="{{ '/assets/js/scroll-animations.js' | relative_url }}"></script>
 
 <!-- D3 -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{ 'https://d3js.org/d3.v7.min.js' | relative_url }}"></script>
 
 <!-- Your radar plot logic -->
 <script src="{{ '/assets/js/onset_hist.js' | relative_url }}"></script>
