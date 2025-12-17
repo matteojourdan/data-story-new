@@ -392,8 +392,16 @@ a {
 }
 
 .data-exploration-image {
+    width: 440px/*45vw*/;
     max-width: 500px; /* Optional: Set a maximum width */
     height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+}
+
+.da-image {
+    width: 80vw;
+    /*max-width: 900px;*/
+    height: auto;
     border-radius: 10px;
 }
 

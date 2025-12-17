@@ -197,8 +197,38 @@
     </div>
     <div class="data-column">
         <div class="data-double-image">
-            <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
-            <img class="data-exploration-image" src="/assets/img/temporal_ISG_expr.png" alt="temporal ISG expression"/>
+            <div class="data-exploration-figure">
+                <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
+                <div class="figure-title">
+                    <h3>Fig. 2:</h3>
+                    <p>ISG expression across immune families and severity groups</p>
+                </div>
+            </div>
+            <section id="markers">
+                <!-- Controls -->
+                <div class="controls">
+                    <label for="geneDropdown">Gene:</label>
+                    <select id="geneDropdown" class="select"></select>
+                    
+                    <label for="showOutlierToggle">Show Outlier:</label>
+                    <input type="checkbox" id="showOutlierToggle">
+                </div>
+                
+                <div class="controls">
+                    <label>Display Mode:</label>
+                    <label><input type="radio" name="lineMode" value="mean" checked> Mean</label>
+                    <label><input type="radio" name="lineMode" value="regression"> Regression</label>
+                    <label><input type="radio" name="lineMode" value="both"> Both</label>
+                </div>
+                
+                <!-- Visualization container -->
+                <div id="vis"></div>
+                
+                <div class="figure-title">
+                    <h3>Fig. 3: </h3>
+                    <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
+                </div>
+            </section>
         </div>
 
         <p>After exploring the patients' metadata, we wanted to familiarize ourselves with the <span>gene
@@ -214,20 +244,38 @@
         Lastly, we wanted to examine the <span>temporal trajectories</span> of these interferon-stimulated
         genes using our predefined time bins. We can see in the second plot on the left that these
         markers exhibit clear temporal dynamics that differ across severities. This hints towards
-        the potential for interesting results from our downstream analyses of COVID-19 infection trajectories.</p>
+        the potential for interesting results from our downstream analyses of COVID-19 infection trajectories. 
+        It also allowed us to identify an important outlier which can be displayed using the toggle on figure 3.</p>
 
     </div>
 </section>
 
 <section id="diff_ana" class="page-section">
     <h2>Differential Analysis</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+    <p>
 
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+By examining the dataset, we noticed it contained negative values, which confirmed the data was scaled.
+Because differential expression analysis requires untransformed UMI counts, these processed values are not appropriate.
+The raw layer, shown in the middle pannel, provides the correct unprocessed data for further analysis. 
+The goal of the transformations was to help with clustering. After getting back the raw data, we apply a log transformation.
+This helps to stabilize variance and make the data more interpretable for differential expression analysis.
 
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
 
+We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
+Our approach is to use a linear regression model for each gene’s expression across cells and patients.
+We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level 
+by summing counts across cells within specific immune cell families.
+By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
+while still capturing the key variability in gene expression related to disease severity.
     </p>
+    
+    <div class="data-exploration-figure">
+        <img class="da-image" src="/assets/img/histograms raw.png" alt="Raw data histogram"/>
+        <div class="figure-title">
+            <h3>Fig. 4:</h3>
+            <p>Distribution of scaled and raw UMI counts</p>
+        </div>
+    </div>
 </section>
 
 <section id="temp_ana" class="page-section">
@@ -262,7 +310,16 @@
 <!-- D3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
+<!-- Vega-Lite for markers visualization -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
 <!-- Your radar plot logic -->
 <script src="/assets/js/onset_hist.js"></script>
+
+<!-- Markers visualization -->
+<link rel="stylesheet" href="/assets/css/markers.css">
+<script src="/assets/js/markers.js"></script>
 </body>
 </html>
