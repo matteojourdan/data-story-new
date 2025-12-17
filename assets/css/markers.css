@@ -1,8 +1,7 @@
-    body { font-family: Arial; margin: 30px; }
-    select, label { font-size: 16px; }
-    #markers .controls { margin-bottom: 15px; }
-    #markers #vis {
-        width: 34vw;
-        max-width: 400px;
-        height: auto;
-    }
+#markers select, label { font-size: 16px; }
+#markers .controls { margin-bottom: 15px; }
+#markers #vis {
+    width: 34vw;
+    max-width: 400px;
+    height: auto;
+}
