@@ -1,11 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    // Observer for research questions
+    const questionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
@@ -13,12 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 entry.target.classList.remove('in-view');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    const questions = document.querySelectorAll('.research-question');
-    questions.forEach(q => observer.observe(q));
+    document.querySelectorAll('.research-question').forEach(q => questionObserver.observe(q));
 
-    // Floating Research Question Logic
+    // Observer for generic scroll animations (uses your .animate-on-scroll class)
+    const animateObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => animateObserver.observe(el));
+
+    // Floating Research Question Sidebar - using IntersectionObserver (no scroll listener)
     const sidebar = document.getElementById('sidebar-question');
     const sidebarText = document.getElementById('sidebar-question-text');
     const sidebarTitle = document.getElementById('sidebar-question-title');
@@ -32,45 +37,44 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 'temp_ana',
             title: '2.',
-            text: 'Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?'
+            text: 'Can we reconstruct the timeline and trajectory of a patient\'s COVID-19 infection?'
         },
         {
             id: 'pred_mod',
             title: '3.',
-            text: 'Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?'
+            text: 'Can a patient\'s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?'
         }
     ];
 
-    function updateSidebar() {
-        if (!sidebar || !sidebarText || !sidebarTitle) return;
-
-        let activeSection = null;
-        const viewportHeight = window.innerHeight;
-        // Check point: middle of the screen
-        const checkPoint = viewportHeight/12;
-
-        for (const section of sections) {
-            const element = document.getElementById(section.id);
-            if (element) {
-                const rect = element.getBoundingClientRect();
-                // If the section contains the middle of the screen
-                if (rect.top <= checkPoint && rect.bottom >= checkPoint) {
-                    activeSection = section;
-                    break;
+    if (sidebar && sidebarText && sidebarTitle) {
+        const sidebarObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = sections.find(s => s.id === entry.target.id);
+                    if (section) {
+                        sidebarTitle.textContent = section.title;
+                        sidebarText.textContent = section.text;
+                        sidebar.classList.add('visible');
+                    }
                 }
-            }
-        }
+            });
+        }, { threshold: 0.1, rootMargin: '-10% 0px -80% 0px' });
 
-        if (activeSection) {
-            sidebarTitle.textContent = activeSection.title;
-            sidebarText.textContent = activeSection.text;
-            sidebar.classList.add('visible');
-        } else {
-            sidebar.classList.remove('visible');
-        }
+        sections.forEach(section => {
+            const element = document.getElementById(section.id);
+            if (element) sidebarObserver.observe(element);
+        });
+
+        // Hide sidebar when back at intro/research questions section
+        const introObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sidebar.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const intro = document.getElementById('research_questions');
+        if (intro) introObserver.observe(intro);
     }
-
-    window.addEventListener('scroll', updateSidebar);
-    // Initial check in case we reload in the middle of the page
-    updateSidebar();
 });
