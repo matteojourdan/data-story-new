@@ -45,7 +45,7 @@ const clinicalOrder = [
 // ---------------------------------------------------------------------------
 // LOAD DATA
 // ---------------------------------------------------------------------------
-d3.json("/assets/data/days_severity.json").then(data => {
+d3.json("assets/data/days_severity.json").then(data => {
   console.log("Loaded:", data.length, "records.");
 
   const tooltip = d3.select("#tooltip");
@@ -238,3 +238,4 @@ d3.json("/assets/data/days_severity.json").then(data => {
   });
 
 });
+
