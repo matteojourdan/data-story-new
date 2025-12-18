@@ -115,18 +115,34 @@ title: Home
             <section id="markers">
                 <!-- Controls -->
                 <div class="controls">
-                    <label for="geneDropdown">Gene:</label>
-                    <select id="geneDropdown" class="select"></select>
-                    
-                    <label for="showOutlierToggle">Show Outlier:</label>
-                    <input type="checkbox" id="showOutlierToggle">
+                    <div class="checkbox-row">
+                        <label for="geneDropdown">Gene:</label>
+                        <select id="geneDropdown" class="select"></select>
+                    </div>
+
+                    <div class="checkbox-row">
+                        <label for="showOutlierToggle">Show Outlier:</label>
+                        <input type="checkbox" id="showOutlierToggle">
+                    </div>
                 </div>
-                
-                <div class="controls">
+
+                <div class="radio-buttons">
+
                     <label>Display Mode:</label>
-                    <label><input type="radio" name="lineMode" value="mean" checked> Mean</label>
-                    <label><input type="radio" name="lineMode" value="regression"> Regression</label>
-                    <label><input type="radio" name="lineMode" value="both"> Both</label>
+                    <div class="radio-choices-tight">
+                        <div class="radio-row">
+                            <input type="radio" name="lineMode" value="mean" checked>
+                            <label>Mean</label>
+                        </div>
+                        <div class="radio-row">
+                            <input type="radio" name="lineMode" value="regression">
+                            <label>Regression</label>
+                        </div>
+                        <div class="radio-row">
+                            <input type="radio" name="lineMode" value="both">
+                            <label>Both</label>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Visualization container -->
