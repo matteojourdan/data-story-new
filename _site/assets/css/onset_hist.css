@@ -1,6 +1,6 @@
 /* ONLY applies inside the onset plot */
 #onset #chart {
-    width: 500px;
+    width: 440px;
     height: auto;
     background: transparent;
     border-radius: 8px;
@@ -58,13 +58,4 @@
     height: 12px;
     border-radius: 50%;
     margin-right: 6px;
-}
-
-#onset h3 {
-    font-style: italic;
-}
-
-#onset p {
-    font-size: 1rem;
-    color: var(--text-light);
 }
