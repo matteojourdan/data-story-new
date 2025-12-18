@@ -485,7 +485,35 @@ a {
 .figure-title {
     display: flex;
     flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    gap: 1rem;
+}
+
+.figure-title h3 {
+    font-size: 1.1rem;
+    white-space: nowrap;
+    line-height: 1.2;
+    font-style: italic;
+}
+
+.figure-title p {
+    line-height: 1.5;
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.side-by-side-figures {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.figure-flourish {
+    width: 400px;
+    height: auto;
 }
