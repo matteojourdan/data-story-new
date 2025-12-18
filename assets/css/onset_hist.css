@@ -1,14 +1,11 @@
 /* ONLY applies inside the onset plot */
 #onset #chart {
-    width: 40vw;
-    max-width: 400px;
-    min-width: 210px;
+    width: 500px;
     height: auto;
     background: transparent;
     border-radius: 8px;
     padding: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 0 auto;
 }
 
 #onset #controls {
