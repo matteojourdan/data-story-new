@@ -36,7 +36,9 @@ function fillDropdown() {
   );
 }
 
-
+// ---------------------------------------------------------------
+// Get pre-aggregated data for a specific gene
+// ---------------------------------------------------------------
 function computeGeneSummary(gene) {
   const showOutlier = document.getElementById("showOutlierToggle").checked;
 
