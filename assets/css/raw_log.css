@@ -1,0 +1,85 @@
+/* Toggle Container */
+#raw-log-chart .toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#raw-log-chart .toggle-label {
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Toggle Switch */
+#raw-log-chart .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+#raw-log-chart .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#raw-log-chart .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+#raw-log-chart .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--accent);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+#raw-log-chart input:checked + .toggle-slider {
+    background-color: #555;
+}
+
+#raw-log-chart input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* Chart styling */
+#raw-log-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#raw-log-chart #raw-log-histogram svg {
+    background: transparent;
+}
+
+/* Tooltip */
+#raw-log-chart .chart-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: var(--text-light);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 100;
+}

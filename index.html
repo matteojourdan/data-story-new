@@ -175,7 +175,7 @@ while still capturing the key variability in gene expression related to disease 
     </p>
     
     <div class="data-exploration-figure">
-        <img class="da-image" src="/assets/img/histograms raw.png" alt="Raw data histogram"/>
+        <div id="raw-log-chart"></div>
         <div class="figure-title">
             <h3>Fig. 4:</h3>
             <p>Distribution of scaled and raw UMI counts</p>
@@ -226,3 +226,7 @@ while still capturing the key variability in gene expression related to disease 
 <!-- Markers visualization -->
 <link rel="stylesheet" href="{{ '/assets/css/markers.css' | relative_url }}">
 <script src="{{ '/assets/js/markers.js' | relative_url }}"></script>
+
+<!-- Raw/Log histogram -->
+<link rel="stylesheet" href="{{ '/assets/css/raw_log.css' | relative_url }}">
+<script src="{{ '/assets/js/raw_log.js' | relative_url }}"></script>
