@@ -103,7 +103,10 @@ title: Home
     <div class="data-column">
         <div class="data-double-image">
             <div class="data-exploration-figure">
-                <img class="data-exploration-image" src="/assets/img/expr_levels_ISG.png" alt="ISG expression levels"/>
+                <img class="data-exploration-image"
+                 src="{{ '/assets/img/expr_levels_ISG.png' | relative_url }}"
+                 alt="ISG expression levels"/>
+
                 <div class="figure-title">
                     <h3>Fig. 2:</h3>
                     <p>ISG expression across immune families and severity groups</p>
@@ -175,7 +178,10 @@ while still capturing the key variability in gene expression related to disease 
     </p>
     
     <div class="data-exploration-figure">
-        <img class="da-image" src="/assets/img/histograms raw.png" alt="Raw data histogram"/>
+        <img class="da-image"
+         src="{{ '/assets/img/histograms_raw.png' | relative_url }}"
+         alt="Raw data histogram"/>
+
         <div class="figure-title">
             <h3>Fig. 4:</h3>
             <p>Distribution of scaled and raw UMI counts</p>
@@ -213,12 +219,12 @@ while still capturing the key variability in gene expression related to disease 
 <script src="{{ '/assets/js/scroll-animations.js' | relative_url }}"></script>
 
 <!-- D3 -->
-<script src="{{ 'https://d3js.org/d3.v7.min.js' | relative_url }}"></script>
+<script src="{{ 'https://d3js.org/d3.v7.min.js'}}"></script>
 
 <!-- Vega-Lite for markers visualization -->
-<script src="{{ 'https://cdn.jsdelivr.net/npm/vega@5' | relative_url }}"></script>
-<script src="{{ 'https://cdn.jsdelivr.net/npm/vega-lite@5' | relative_url }}"></script>
-<script src="{{ 'https://cdn.jsdelivr.net/npm/vega-embed@6' | relative_url }}"></script>
+<script src="{{ 'https://cdn.jsdelivr.net/npm/vega@5'}}"></script>
+<script src="{{ 'https://cdn.jsdelivr.net/npm/vega-lite@5' }}"></script>
+<script src="{{ 'https://cdn.jsdelivr.net/npm/vega-embed@6' }}"></script>
 
 <!-- Your radar plot logic -->
 <script src="{{ '/assets/js/onset_hist.js' | relative_url }}"></script>
