@@ -188,7 +188,7 @@
                 <div id="tooltip" class="tooltip"></div>
 
                 <div class="figure-title">
-                    <h3>Fig. 1: </h3>
+                    <h3>Fig. 1:</h3>
                     <p>Distribution of patients in days from onset, across severities</p>
                 </div>
 
@@ -225,7 +225,7 @@
                 <div id="vis"></div>
                 
                 <div class="figure-title">
-                    <h3>Fig. 3: </h3>
+                    <h3>Fig. 3:</h3>
                     <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
                 </div>
             </section>
@@ -291,13 +291,36 @@ while still capturing the key variability in gene expression related to disease 
 
 <section id="pred_mod" class="page-section">
     <h2>Predictive Model</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
+    <p>To predict how severe a patient’s COVID-19 infection will become, we developed a model that combines clinical
+        information with immune system signals. The clinical information includes factors such as age, sex, smoking
+        status, and time since symptom onset. The immune profile is summarized by the cell-level scores computed earlier,
+        which capture immune activation based on the expression of key genes associated with COVID-19 severity. By
+        bringing these two sources of information together, the model aims to anticipate the overall trajectory of the
+        disease for each patient. <br/>
+        We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
+        labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
+        clinical settings. We then repeated the analysis using the grouped severity categories and discretized time bins
+        introduced in our Data Exploration. This second approach allowed us to assess whether a simpler, biologically
+        motivated representation of the data leads to better interpretability and stronger predictions. <br/>
+        Across both settings, we compared different machine-learning models to evaluate how accurately they could
+        predict disease severity. Figure 5 below summarizes model performance using accuracy and F1-score.
+        Overall, the grouped-severity and time-binned representation leads to a clear improvement for both models,
+        with especially strong gains for XGBoost. This suggests that organizing clinical outcomes into biologically
+        coherent categories and disease stages reduces noise and ambiguity in the labels, making severity easier to
+        predict. Under this formulation, XGBoost performs best overall, indicating that meaningful predictions of
+        COVID-19 severity can be made using this model.
     </p>
+    <div class="side-by-side-figures">
+        <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885244"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885244/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
+        <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885113"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885113/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
+    </div>
+
+    <div class="figure-title" style="width: 800px">
+        <h3>Fig. 5:</h3>
+        <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
+            measured in Accuracy vs Macro-F1</p>
+    </div>
+
 </section>
 
 <div id="sidebar-question" class="sidebar-question">

@@ -5,7 +5,7 @@ let genes = [];
 const binIndex = { "0–6": 0, "7–10": 1, "11–14": 2, "15–21": 3, "22+": 4 };
 const binOrder = ["0–6", "7–10", "11–14", "15–21", "22+"];
 
-fetch("/assets/data/adata_summary.json")
+fetch("assets/data/adata_summary.json")
   .then(r => r.json())
   .then(data => {
     rawData = data;
@@ -36,9 +36,7 @@ function fillDropdown() {
   );
 }
 
-// ---------------------------------------------------------------
-// Get pre-aggregated data for a specific gene
-// ---------------------------------------------------------------
+
 function computeGeneSummary(gene) {
   const showOutlier = document.getElementById("showOutlierToggle").checked;
 
