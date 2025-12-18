@@ -80,7 +80,6 @@ GEM
 
 PLATFORMS
   arm64-darwin
-  x64-mingw-ucrt
   x64-mingw32
 
 DEPENDENCIES
