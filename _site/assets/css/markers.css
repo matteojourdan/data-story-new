@@ -1,5 +1,4 @@
-    body { font-family: Arial; margin: 30px; }
-    select, label { font-size: 16px; }
+    #markers select, #markers label { font-size: 16px; }
     #markers .controls { margin-bottom: 15px; }
     #markers #vis {
         width: 34vw;

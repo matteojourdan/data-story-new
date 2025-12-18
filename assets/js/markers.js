@@ -5,39 +5,19 @@ let genes = [];
 const binIndex = { "0–6": 0, "7–10": 1, "11–14": 2, "15–21": 3, "22+": 4 };
 const binOrder = ["0–6", "7–10", "11–14", "15–21", "22+"];
 
-function mapSeverity(raw) {
-  if (!raw) return null;
-  const s = String(raw).toLowerCase().trim();
-
-  if (s.includes("mild") || s.includes("asymp")) return "Mild-Asym.";
-  if (s.includes("moderate")) return "Moderate";
-  if (s.includes("severe") || s.includes("crit")) return "Severe-Crit.";
-  return null;
-}
-
-fetch("/assets/data/adata_subset.json")
+fetch("/assets/data/adata_summary.json")
   .then(r => r.json())
   .then(data => {
+    rawData = data;
 
-    data.forEach(d => { d.severityGroup = mapSeverity(d.Severity); });
-
-    let filtered = data.filter(d =>
-      d.severityGroup !== null &&
-      d.time_bin !== null &&
-      d.Days_from_onset !== null
-    );
-
-
-    rawData = filtered;
-
-    const skip = new Set(["Severity", "severityGroup", "Days_from_onset", "time_bin"]);
-    genes = Object.keys(rawData[0]).filter(k => !skip.has(k));
+    // Get unique gene names from the pre-aggregated data
+    genes = [...new Set(data.map(d => d.gene))];
 
     fillDropdown();
     updatePlot(genes[0]);
   });
 
-  function fillDropdown() {
+function fillDropdown() {
   const dd = document.getElementById("geneDropdown");
   dd.innerHTML = "";
   genes.forEach(g => {
@@ -57,36 +37,25 @@ fetch("/assets/data/adata_subset.json")
 }
 
 // ---------------------------------------------------------------
-// 4. Compute binned mean expression
+// Get pre-aggregated data for a specific gene
 // ---------------------------------------------------------------
 function computeGeneSummary(gene) {
   const showOutlier = document.getElementById("showOutlierToggle").checked;
 
-  let clean = rawData.filter(d => d[gene] !== null && !isNaN(d[gene]));
+  let filtered = rawData.filter(d => d.gene === gene);
 
   if (!showOutlier) {
-    clean = clean.filter(d =>
+    filtered = filtered.filter(d =>
       !(d.severityGroup === "Moderate" && d.time_bin === "22+")
     );
   }
 
-  const grouped = d3.group(clean, d => d.severityGroup, d => d.time_bin);
-
-  const out = [];
-  for (const [sev, byBin] of grouped) {
-    for (const [bin, rows] of byBin) {
-      const mean = d3.mean(rows, d => +d[gene]);
-      if (!isNaN(mean)) {
-        out.push({
-          severityGroup: sev,
-          bin,
-          mean,
-          bin_num: binIndex[bin]
-        });
-      }
-    }
-  }
-  return out;
+  return filtered.map(d => ({
+    severityGroup: d.severityGroup,
+    bin: d.time_bin,
+    mean: d.mean,
+    bin_num: binIndex[d.time_bin]
+  }));
 }
 
 function updatePlot(gene) {
