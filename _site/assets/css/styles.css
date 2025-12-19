@@ -253,6 +253,12 @@ a {
     color: white;
 }
 
+.page-section span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
 .model-perf-section {
     display: flex;
     flex-direction: column;
@@ -554,6 +560,7 @@ a {
     justify-content: left;
     align-items: start;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 .figure-title h3 {
@@ -575,6 +582,7 @@ a {
     justify-content: center;
     align-items: center;
     gap: 100px;
+    margin-top: 2rem;
 }
 
 .figure-flourish {
