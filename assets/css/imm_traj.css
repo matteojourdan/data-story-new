@@ -4,6 +4,7 @@
   padding: 0;
   background-color: transparent;
   color: var(--text-light);
+  margin-top: 2rem;
 }
 
 /* Dropdown container */
@@ -68,24 +69,4 @@
 /* Remove Vega embed action links spacing */
 .imm-traj-container .vega-embed.has-actions {
   padding-right: 0;
-}
-
-/* Figure title below chart */
-.imm-traj-container .figure-title {
-  margin-top: 12px;
-  text-align: center;
-}
-
-.imm-traj-container .figure-title h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-  color: var(--text-light);
-}
-
-.imm-traj-container .figure-title p {
-  font-size: 13px;
-  margin: 4px 0 0 0;
-  color: var(--text-light);
-  opacity: 0.8;
 }
