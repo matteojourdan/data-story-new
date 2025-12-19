@@ -220,8 +220,12 @@ while still capturing the key variability in gene expression related to disease 
         status, and time since symptom onset. The immune profile is summarized by the cell-level scores computed earlier,
         which capture immune activation based on the expression of key genes associated with COVID-19 severity. By
         bringing these two sources of information together, the model aims to anticipate the overall trajectory of the
-        disease for each patient. <br/>
-        We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
+        disease for each patient.
+    </p>
+
+<section id="model_performance" class="sub-page-section">
+    <h2>Model performance</h2>
+    <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
         labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
         clinical settings. We then repeated the analysis using the grouped severity categories and discretized time bins
         introduced in our Data Exploration. This second approach allowed us to assess whether a simpler, biologically
@@ -244,6 +248,37 @@ while still capturing the key variability in gene expression related to disease 
         <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
             measured in Accuracy vs Macro-F1</p>
     </div>
+
+</section>
+
+<section id="feature_importance" class="sub-page-section">
+    <h2>Feature importance</h2>
+    <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
+        these predictions. To do this, we examined feature importance patterns from our models, which highlight the
+        which immune cells and demographic factors most strongly influence the predictions. <br/>
+        To properly analyze feature importance, we looked at it through two axes. First, we visualized how different algorithms
+        prioritize immune signals, trying to identify patterns that appear consistently across models versus those that are
+        model-specific. We then compared the patterns identified using the dataset's original labels against those found using
+        our grouped severities and time representations. This allowed us to see how simplifying the clinical labels affects
+        which features emerge as important. <br/>
+        Features that remain influential across both strategies likely reflect stable immunological correlates of COVID-19
+        severity, while others appear sensitive to noise in clinical labeling and timing.
+    </p>
+    <p>
+        Starting with the ungrouped severity and time labels, we found that both models highlighted biologically
+        meaningful immune pathways linked to COVID-19 severity, although they disagreed on the ordering of these features.
+        The Random Forest model spread importance across
+        multiple related immune cell types, namely CD4 and CD8 T cells, dendritic cells and monocytes, suggesting
+        that severity is associated with coordinated changes across several immune
+        compartments rather than a single dominant signal.
+        In contrast, XGBoost focused on a smaller set of highly informative features within these same immune families.
+        Myeloid cells and CD4 T cells emerged as especially influential, reflecting more targeted immune signatures that
+        best distinguish severe from mild disease.
+        Across both models, platelet-related and progenitor cell signals played only a minor role, suggesting limited
+        relevance for severity prediction in this setting. These observations are summarized in Fig. 6.
+    </p>
+</section>
+
 
 </section>
 
