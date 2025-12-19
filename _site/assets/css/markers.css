@@ -1,5 +1,120 @@
-#markers select, label { font-size: 16px; }
-#markers .controls { margin-bottom: 15px; }
+#markers select {
+    font-size: 14px;
+    margin-left: 10px;
+    color: var(--text-light);
+    background-color: var(--bg);
+    border: 1px solid var(--text-light);
+}
+
+/* Style the select when focused */
+#markers select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+#markers .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+#markers input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 14px;
+    height: 14px;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+
+}
+
+/* Hover effect */
+#markers input[type="checkbox"]:hover {
+    opacity: 0.8;
+}
+
+/* Checked state */
+#markers input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* White checkmark */
+#markers input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 3px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+}
+
+#markers input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+#markers input[type="radio"]:hover {
+    opacity: 0.8;
+}
+
+#markers input[type="radio"]:checked {
+    border-color: var(--accent);
+    background-color: var(--accent);
+}
+
+#markers .radio-row {
+    display: flex;
+    align-items: center;  /* vertical centering */
+    gap: 10px;
+}
+
+#markers .checkbox-row {
+    display: flex;
+    align-items: center;  /* vertical centering */
+    gap: 10px;
+
+}
+
+#markers .radio-buttons {
+    display: flex;
+    align-items: center;  /* vertical centering */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#markers .radio-choices-tight {
+    display: flex;
+    align-items: center;  /* vertical centering */
+    gap: 10px;
+}
+
+#markers label {
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;   /* important */
+}
+
 #markers #vis {
     width: 34vw;
     max-width: 400px;

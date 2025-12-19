@@ -12,7 +12,7 @@
     <div class="navbar-container">
         <!-- Left: Data Story -->
         <div class="navbar-left">
-            <a href="{% if site.navigation[0].url contains '://' %}{{ site.navigation[0].url }}{% else %}{{ site.navigation[0].url | relative_url }}{% endif %}" class="navbar-title">Data story</a>
+            <a href="{{ '/' | relative_url }}{{ nav.url }}" class="navbar-title">Data story</a>
         </div>
 
         <!-- Center: Section Links (e.g., Introduction) -->

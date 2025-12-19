@@ -80,14 +80,40 @@ function updatePlot(gene) {
   }
 
   // Regression line
-  if (mode === "regression" || mode === "both") {
+  if (mode === "regression") {
+    layers.push({
+      mark: {type: "point", opacity: 0},
+      encoding: {
+        x: {
+          field: "bin",
+          type: "ordinal",
+          sort: binOrder,
+          title: "Time Bin"
+        },
+        y: {field: "mean", type: "quantitative"}
+      }
+    });
     layers.push({
       transform: [
         { regression: "mean", on: "bin_num", groupby: ["severityGroup"] }
       ],
       mark: { type: "line", strokeDash: [6, 4], strokeWidth: 2 },
       encoding: {
-        x: { field: "bin_num", type: "quantitative", axis: { labels: false, ticks: false }},
+        x: { field: "bin_num", type: "quantitative", axis: null},
+        y: { field: "mean", type: "quantitative" },
+        color: { field: "severityGroup", type: "nominal", scale: { scheme: "set2" }}
+      }
+    });
+  }
+
+  if (mode === "both") {
+    layers.push({
+      transform: [
+        { regression: "mean", on: "bin_num", groupby: ["severityGroup"] }
+      ],
+      mark: { type: "line", strokeDash: [6, 4], strokeWidth: 2 },
+      encoding: {
+        x: { field: "bin_num", type: "quantitative", axis: null},
         y: { field: "mean", type: "quantitative" },
         color: { field: "severityGroup", type: "nominal", scale: { scheme: "set2" }}
       }
@@ -98,7 +124,20 @@ function updatePlot(gene) {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
     width: 300,
     height: 150,
+    background: "transparent",
     title: `Expression of ${gene} by Severity Group`,
+    resolve: {
+      scale: {
+        x: "shared"
+      }
+    },
+    config: {
+      text: { color: "white" },
+      axis: { labelColor: "white", titleColor: "white", grid: false, strokeOpacity: 0},
+      legend: { labelColor: "white", titleColor: "white" },
+      title: { color: "white", anchor: "center", offset: 20 },
+      view: { stroke: null }
+    },
     data: { values },
     layer: layers
   };
