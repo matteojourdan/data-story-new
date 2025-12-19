@@ -15,6 +15,11 @@ navigation:
     url: "#temp_ana"
   - title: Predictive Model
     url: "#pred_mod"
+    sublinks:
+      - title: Model Performance
+        url: "#model_performance"
+      - title: Feature Importance
+        url: "#feature_importance"
   - title: Gallery
     url: /gallery
   - title: Data
