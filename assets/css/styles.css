@@ -554,6 +554,7 @@ a {
     justify-content: left;
     align-items: start;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 .figure-title h3 {
