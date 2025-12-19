@@ -199,7 +199,7 @@
                 <div id="tooltip" class="tooltip"></div>
 
                 <div class="figure-title">
-                    <h3>Fig. 1:</h3>
+                    <h3>Fig. 1</h3>
                     <p>Distribution of patients in days from onset, across severities</p>
                 </div>
 
@@ -214,7 +214,7 @@
                  alt="ISG expression levels"/>
 
                 <div class="figure-title">
-                    <h3>Fig. 2:</h3>
+                    <h3>Fig. 2</h3>
                     <p>ISG expression across immune families and severity groups</p>
                 </div>
             </div>
@@ -255,7 +255,7 @@
                 <div id="vis"></div>
                 
                 <div class="figure-title">
-                    <h3>Fig. 3:</h3>
+                    <h3>Fig. 3</h3>
                     <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
                 </div>
             </section>
@@ -302,10 +302,19 @@ while still capturing the key variability in gene expression related to disease 
     <div class="data-exploration-image">
         <div id="raw-log-chart"></div>
         <div class="figure-title">
-            <h3>Fig. 4:</h3>
+            <h3>Fig. 4</h3>
             <p>Distribution of scaled and raw UMI counts</p>
         </div>
     </div>
+
+    <div class="packed-circles">
+        <div class="flourish-embed flourish-hierarchy packed-circles" data-src="visualisation/26892943"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26892943/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
+        <div class="figure-title">
+            <h3>Fig. 5</h3>
+            <p>Coefficients of the 50 most differentially expressed genes in their respective cells</p>
+        </div>
+    </div>
+
 </section>
 
 <section id="temp_ana" class="page-section">
@@ -329,7 +338,7 @@ while still capturing the key variability in gene expression related to disease 
         disease for each patient.
     </p>
 
-<section id="model_performance" class="sub-page-section">
+<section id="model_performance" class="model-perf-section">
     <h2>Model performance</h2>
     <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
         labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
@@ -350,14 +359,14 @@ while still capturing the key variability in gene expression related to disease 
     </div>
 
     <div class="figure-title" style="width: 800px">
-        <h3>Fig. 5:</h3>
+        <h3>Fig. 5</h3>
         <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
             measured in Accuracy vs Macro-F1</p>
     </div>
 
 </section>
 
-<section id="feature_importance" class="sub-page-section">
+<section id="feature_importance" class="feature-imp-section">
     <h2>Feature importance</h2>
     <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
         these predictions. To do this, we examined feature importance patterns from our models, which highlight the
@@ -381,7 +390,35 @@ while still capturing the key variability in gene expression related to disease 
         Myeloid cells and CD4 T cells emerged as especially influential, reflecting more targeted immune signatures that
         best distinguish severe from mild disease.
         Across both models, platelet-related and progenitor cell signals played only a minor role, suggesting limited
-        relevance for severity prediction in this setting. These observations are summarized in Fig. 6.
+        relevance for severity prediction in this setting. These observations are summarized in Figure 6 below.
+    </p>
+
+    <div class="side-by-side-figures">
+        <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26906116"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26906116/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+        <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26904223"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26904223/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+    </div>
+
+    <div class="figure-title">
+        <h3>Fig. 6</h3>
+        <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
+    </div>
+
+
+    <p>
+        We then shifted to grouped severity categories and time bins, under which the immune features
+        driving predictions became clearer and more consistent across models. In this setting, both models
+        agreed that myeloid cells, especially dendritic cells and monocytes, were
+        central to disease severity. This highlights the key role of innate immune dysregulation and antigen
+        presentation in shaping overall COVID-19 outcomes.
+        The adaptive immune system also remained prominent, as CD4 T cells ranked among the most
+        important contributors, followed by B and plasma cells, showing the importance of adaptive
+        immune responses in severe disease.
+        Compared to the ungrouped analysis, importance was no longer spread across many isolated cell subtypes but rather
+        at the level of broader cell families. This suggests that the grouped
+        representation captures the bigger picture and identifies the core immune mechanisms underlying disease progresion.
+        While the two models
+        still differed slightly in how they distributed importance, they now agreed on the same overall hierarchy of
+        immune families. This is shown in Figure 7.
     </p>
 </section>
 

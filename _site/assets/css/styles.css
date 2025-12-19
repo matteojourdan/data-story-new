@@ -253,7 +253,7 @@ a {
     color: white;
 }
 
-.sub-page-section {
+.model-perf-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -262,6 +262,31 @@ a {
     margin: 0 0;
     padding: 32px 0 0 0; /* top, right, bottom, left */
     color: white;
+}
+
+.model-perf-section h2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: start;
+}
+
+.feature-imp-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    margin: 0 0;
+    padding: 32px 0 0 0; /* top, right, bottom, left */
+    color: white;
+}
+
+.feature-imp-section h2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
 }
 
 .page-section h2 {
@@ -428,6 +453,18 @@ a {
     margin-top: 20px;
 }
 
+.packed-circles {
+    width: 500px/*45vw*/;
+    max-width: 500px; /* Optional: Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    gap: 20px;
+}
+
 .da-image {
     width: 80vw;
     /*max-width: 900px;*/
@@ -537,12 +574,25 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    gap: 100px;
 }
 
 .figure-flourish {
     width: 400px;
     height: auto;
+}
+
+.sankey-diagram {
+    width: 400px;
+    height: auto;
+}
+
+.feat-column {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.feat-column p {
+    max-width: 500px;
 }
