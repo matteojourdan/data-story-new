@@ -283,20 +283,17 @@
 <section id="diff_ana" class="page-section">
     <h2>Differential Analysis</h2>
     <p>
-
-By examining the dataset, we noticed it contained negative values, which confirmed the data was scaled.
-Because differential expression analysis requires untransformed UMI counts, these processed values are not appropriate.
-The raw layer, shown in the middle pannel, provides the correct unprocessed data for further analysis. 
-The goal of the transformations was to help with clustering. After getting back the raw data, we apply a log transformation.
-This helps to stabilize variance and make the data more interpretable for differential expression analysis.
-
-
+By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled. 
+Because differential expression analysis requires untransformed UMI counts, 
+these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients), 
+the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle. 
+This helps to stabilize variance and make the data more interpretable for differential expression analysis. 
 We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
-Our approach is to use a linear regression model for each gene’s expression across cells and patients.
-We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level 
-by summing counts across cells within specific immune cell families.
+Our approach is to use a linear regression model for each gene’s expression across cells and patients. 
+We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families. 
 By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
-while still capturing the key variability in gene expression related to disease severity.
+while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
+ with size being defined by the metric returned by the differential expression analysis.
     </p>
     
     <div class="data-exploration-image">
@@ -362,6 +359,18 @@ while still capturing the key variability in gene expression related to disease 
         <h3>Fig. 5</h3>
         <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
             measured in Accuracy vs Macro-F1</p>
+    </div>
+
+    <div class="imm-traj-container">
+        <div class="controls">
+            <label for="imm-traj-dropdown">Cell Type:</label>
+            <select id="imm-traj-dropdown"></select>
+        </div>
+        <div id="imm-traj-vis"></div>
+        <div class="figure-title">
+            <h3>Fig. 6:</h3>
+            <p>Cell-type scores across time bins and severity groups</p>
+        </div>
     </div>
 
 </section>
@@ -450,6 +459,10 @@ while still capturing the key variability in gene expression related to disease 
 <!-- Raw/Log histogram -->
 <link rel="stylesheet" href="/assets/css/raw_log.css">
 <script src="/assets/js/raw_log.js"></script>
+
+<!-- Immune trajectory visualization -->
+<link rel="stylesheet" href="/assets/css/imm_traj.css">
+<script src="/assets/js/imm_traj.js"></script>
 
 </body>
 </html>
