@@ -590,7 +590,8 @@ a {
 .figure-title {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    width: 100%;
+    justify-content: center;
     align-items: start;
     gap: 1rem;
     margin-top: 2rem;
@@ -607,6 +608,7 @@ a {
     line-height: 1.5;
     font-size: 1rem;
     color: var(--text-light);
+    text-align: left;
 }
 
 .side-by-side-figures {
@@ -667,9 +669,16 @@ a {
 
 .donut-chart-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    width: 500px;
+    align-items: center;
+    width: 50%;
+    margin-top: 2rem;
+}
+
+.donut {
+    width: 370px;
+    height: auto;
 }
 
 .site-footer {

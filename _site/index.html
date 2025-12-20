@@ -176,7 +176,14 @@
         non-smoking adults collected at the Ncl collection site.
     </p>
 
-    <div class="pop-cohort-chart-container"><div class="flourish-embed flourish-survey pop-cohort-chart" data-src="visualisation/26917202"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917202/thumbnail" width="100%" alt="survey visualization" /></noscript></div></div>
+    <div class="pop-cohort-chart-container">
+        <div class="flourish-embed flourish-survey pop-cohort-chart" data-src="visualisation/26917202"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917202/thumbnail" width="100%" alt="survey visualization" /></noscript></div>
+    </div>
+
+    <div class="figure-title">
+        <h3>Fig. 1</h3>
+        <p>Demographics of our dataset.</p>
+    </div>
 
 
     <div class="data-column">
@@ -190,9 +197,13 @@
 
 
         <div class="donut-chart-container">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26916355"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916355/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-        </div>
+            <div class="flourish-embed flourish-chart donut" data-src="visualisation/26916355"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916355/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 
+            <div class="figure-title">
+                <h3>Fig. 2</h3>
+                <p style="width:500px">Distribution of worst case severities.</p>
+            </div>
+        </div>
 
     </div>
 
@@ -216,8 +227,8 @@
                 <div id="tooltip" class="tooltip"></div>
 
                 <div class="figure-title">
-                    <h3>Fig. 1</h3>
-                    <p>Distribution of patients in days from onset, across severities</p>
+                    <h3>Fig. 3</h3>
+                    <p>Distribution of patients in days from onset, across severities.</p>
                 </div>
 
             </section>
@@ -251,7 +262,7 @@
         interferon responses such as ISG15, IFITM3, MX1, and OAS1. These are not meant to capture the full complexity
         of the immune response, but they offer a simple and interpretable entry point into the dataset.</p>
 
-<section id="single-marker-analysis" class="model-perf-section">
+<section id="single_marker_analysis" class="model-perf-section">
     <h2>Single Marker Analysis</h2>
 
     <p>To get a first overview of where these signals are coming from, we summarise the average expression of these
@@ -272,8 +283,8 @@
     </div>
 
     <div class="figure-title" style="width:100%; justify-content: center">
-        <h3>Fig. 2</h3>
-        <p>ISG expression across immune families and severity groups</p>
+        <h3>Fig. 4</h3>
+        <p>ISG expression across immune families and severity groups.</p>
     </div>
 
     <div class="data-column">
@@ -314,9 +325,9 @@
                 <!-- Visualization container -->
                 <div id="vis"></div>
 
-                <div class="figure-title">
-                    <h3>Fig. 3</h3>
-                    <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
+                <div class="figure-title" style="justify-content: start; width: 500px">
+                    <h3>Fig. 5</h3>
+                    <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier.</p>
                 </div>
             </section>
         </div>
@@ -343,7 +354,7 @@
     </div>
 </section>
 
-<section id="linear-regression" class="feature-imp-section">
+<section id="linear_regression" class="feature-imp-section">
     <h2>Linear Regression</h2>
     <p>
         By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
@@ -362,16 +373,16 @@
     <div class="data-exploration-image">
         <div id="raw-log-chart"></div>
         <div class="figure-title">
-            <h3>Fig. 4</h3>
-            <p>Distribution of scaled and raw UMI counts</p>
+            <h3>Fig. 6</h3>
+            <p>Distribution of scaled and raw UMI counts.</p>
         </div>
     </div>
 
     <div class="packed-circles">
         <div class="flourish-embed flourish-hierarchy packed-circles" data-src="visualisation/26892943"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26892943/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
-        <div class="figure-title">
-            <h3>Fig. 5</h3>
-            <p>Coefficients of the 50 most differentially expressed genes in their respective cells</p>
+        <div class="figure-title" style="width:800px">
+            <h3>Fig. 7</h3>
+            <p>Coefficients of the 50 most differentially expressed genes in their respective cells.</p>
         </div>
     </div>
 </section>
@@ -395,8 +406,8 @@
         </div>
         <div id="imm-traj-vis"></div>
         <div class="figure-title">
-            <h3>Fig. 6:</h3>
-            <p>Cell-type scores across time bins and severity groups</p>
+            <h3>Fig. 8</h3>
+            <p>Cell-type scores across time bins and severity groups.</p>
         </div>
     </div>
 </section>
@@ -432,7 +443,7 @@
     </div>
 
         <div class="figure-title" style="width: 800px">
-            <h3>Fig. 5</h3>
+            <h3>Fig. 9</h3>
             <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
                 measured in Accuracy vs Macro-F1</p>
         </div>
@@ -471,7 +482,7 @@
         </div>
 
         <div class="figure-title">
-            <h3>Fig. 6</h3>
+            <h3>Fig. 10</h3>
             <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
         </div>
 
@@ -499,8 +510,8 @@
         </div>
 
         <div class="figure-title">
-            <h3>Fig. 6</h3>
-            <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
+            <h3>Fig. 11</h3>
+            <p>Feature importance of immune cells according to RF and XGB models, using grouped labels.</p>
         </div>
     </section>
 
