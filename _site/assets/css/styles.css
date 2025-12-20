@@ -316,7 +316,6 @@ a {
     align-items: end;
     width: 100%;
     padding-top: 32px;
-    max-width: 1186px;
     overflow: hidden;
     color: white;
 }
@@ -330,7 +329,6 @@ a {
 .introduction-section p {
     font-size: 1.2rem;
     line-height: 1.6;
-    padding-left: 450px;
     text-align: right;
 }
 
@@ -737,3 +735,8 @@ a {
     flex-shrink: 0;
 }
 
+.navbar-link.active {
+    font-size: 1.1em;
+    color: var(--accent);
+    font-weight: bold;
+}

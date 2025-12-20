@@ -83,40 +83,7 @@
                 </li>
                 
                 
-            
-                
-            
-                
             </ul>
-
-            <!-- Right: Other Links (e.g., Gallery) -->
-        <ul class="navbar-links">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <li class="navbar-link-item">
-                <a href="/gallery" class="navbar-link">
-                    Gallery
-                </a>
-            </li>
-            
-            
-            
-            <li class="navbar-link-item">
-                <a href="/data" class="navbar-link">
-                    Data
-                </a>
-            </li>
-            
-            
-        </ul>
     </div>
 </nav>
 <body>
@@ -143,114 +110,115 @@
     <p>This website walks you through our data analysis, from cleaning and
         visualizing the data, to identifying and scoring mechanisms linked with disease severity, to finally training
         a predictive model with what we found.</p>
-</section>
 
-<section id="research_questions" class="research-section">
-    <h2>Research questions</h2>
-    <div class="research-questions-container">
-        <div class="research-question left">
-            <span class="question-number">1.</span>
-            <p>Can we identify and score key genes and cells participating in the immune response to COVID-19?</p>
+
+    <section id="research_questions" class="research-section">
+        <h2>Research questions</h2>
+        <div class="research-questions-container">
+            <div class="research-question left">
+                <span class="question-number">1.</span>
+                <p>Can we identify and score key genes and cells participating in the immune response to COVID-19?</p>
+            </div>
+            <div class="research-question right">
+                <span class="question-number">2.</span>
+                <p>Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?</p>
+            </div>
+            <div class="research-question left">
+                <span class="question-number">3.</span>
+                <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?</p>
+            </div>
         </div>
-        <div class="research-question right">
-            <span class="question-number">2.</span>
-            <p>Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?</p>
-        </div>
-        <div class="research-question left">
-            <span class="question-number">3.</span>
-            <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?</p>
-        </div>
-    </div>
-</section>
+    </section>
 
 
-<section id="data_exploration" class="data-section">
-    <h2>Data Exploration</h2>
+    <section id="data_exploration" class="data-section">
+        <h2>Data Exploration</h2>
 
-    <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
-        represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
-        clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
-        overview provides important insight into how patients are distributed across these variables. For example,
-        while male and female patients are nearly equally represented, the distributions of age, smoking status,
-        and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
-        non-smoking adults collected at the Ncl collection site.
-    </p>
-
-    <div class="pop-cohort-chart-container">
-        <div class="flourish-embed flourish-survey pop-cohort-chart" data-src="visualisation/26917202"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917202/thumbnail" width="100%" alt="survey visualization" /></noscript></div>
-    </div>
-
-    <div class="figure-title">
-        <h3>Fig. 1</h3>
-        <p>Demographics of our dataset.</p>
-    </div>
-
-
-    <div class="data-column">
         <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
             represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
             clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
             overview provides important insight into how patients are distributed across these variables. For example,
             while male and female patients are nearly equally represented, the distributions of age, smoking status,
             and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
-            non-smoking adults collected at the Ncl collection site.</p>
+            non-smoking adults collected at the Ncl collection site.
+        </p>
 
-
-        <div class="donut-chart-container">
-            <div class="flourish-embed flourish-chart donut" data-src="visualisation/26916355"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916355/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-
-            <div class="figure-title">
-                <h3>Fig. 2</h3>
-                <p style="width:500px">Distribution of worst case severities.</p>
-            </div>
+        <div class="pop-cohort-chart-container">
+            <div class="flourish-embed flourish-survey pop-cohort-chart" data-src="visualisation/26917202"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917202/thumbnail" width="100%" alt="survey visualization" /></noscript></div>
         </div>
 
-    </div>
+        <div class="figure-title">
+            <h3>Fig. 1</h3>
+            <p>Demographics of our dataset.</p>
+        </div>
 
-    <div class="data-column">
 
-        <div class="data-exploration-image">
-            <section id="onset">
-                <!-- Controls -->
-                <div id="controls" class="#controls">
-                    <label for="severitySelect" class="label">Severity:</label>
-                    <select id="severitySelect" class="select"></select>
-                </div>
+        <div class="data-column">
+            <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
+                represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
+                clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
+                overview provides important insight into how patients are distributed across these variables. For example,
+                while male and female patients are nearly equally represented, the distributions of age, smoking status,
+                and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
+                non-smoking adults collected at the Ncl collection site.</p>
 
-                <!-- Optional legend (JS expects it) -->
-                <div id="legend" class="#legend"></div>
 
-                <!-- Chart container (REQUIRED) -->
-                <div id="chart" class="#chart"></div>
-
-                <!-- Tooltip -->
-                <div id="tooltip" class="tooltip"></div>
+            <div class="donut-chart-container">
+                <div class="flourish-embed flourish-chart donut" data-src="visualisation/26916355"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916355/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 
                 <div class="figure-title">
-                    <h3>Fig. 3</h3>
-                    <p>Distribution of patients in days from onset, across severities.</p>
+                    <h3>Fig. 2</h3>
+                    <p style="width:500px">Distribution of worst case severities.</p>
                 </div>
+            </div>
 
-            </section>
         </div>
 
-        <p>In the rest of our analysis, two variables from our dataset will be especially useful for answering our
-            research questions: disease severity and days from onset (the number of days since symptoms began). By
-            visualizing these features individually and together as well as relating them to patient characteristics,
-            we can already get an initial qualitative sense of the dataset’s structure, dynamics and limitations.
-            These next two figures reveal two clear imbalances in the data. First, most samples were collected within
-            the first two weeks of illness. Second, a large fraction of patients belongs to the Mild and Moderate
-            severity groups. This leads to uneven representation across severity levels and uneven sampling across
-            the infection timeline. Both can bias downstream analyses, making some comparisons less reliable simply
-            because certain groups are under-sampled.
-            To address this, we group patients into broader severity categories and time “bins”. This reduces sparsity
-            and gives us a more consistent structure for exploring how immune responses evolve. This figure illustrates
-            the resulting dataset layout, showing how samples are distributed across the severity groups and across our
-            chosen symptom-onset time bins. Some imbalances remain and one case stands out in particular: in the Moderate
-            group, there is only a single sample in the 22+ days bin. We flag this early because a lone data point like
-            this one can disproportionally influence trends later on, especially when we compare gene expressions over
-            time.</p>
-    </div>
+        <div class="data-column">
+
+            <div class="data-exploration-image">
+                <div id="onset">
+                    <!-- Controls -->
+                    <div id="controls" class="#controls">
+                        <label for="severitySelect" class="label">Severity:</label>
+                        <select id="severitySelect" class="select"></select>
+                    </div>
+
+                    <!-- Optional legend (JS expects it) -->
+                    <div id="legend" class="#legend"></div>
+
+                    <!-- Chart container (REQUIRED) -->
+                    <div id="chart" class="#chart"></div>
+
+                    <!-- Tooltip -->
+                    <div id="tooltip" class="tooltip"></div>
+
+                    <div class="figure-title">
+                        <h3>Fig. 3</h3>
+                        <p>Distribution of patients in days from onset, across severities.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <p>In the rest of our analysis, two variables from our dataset will be especially useful for answering our
+                research questions: disease severity and days from onset (the number of days since symptoms began). By
+                visualizing these features individually and together as well as relating them to patient characteristics,
+                we can already get an initial qualitative sense of the dataset’s structure, dynamics and limitations.
+                These next two figures reveal two clear imbalances in the data. First, most samples were collected within
+                the first two weeks of illness. Second, a large fraction of patients belongs to the Mild and Moderate
+                severity groups. This leads to uneven representation across severity levels and uneven sampling across
+                the infection timeline. Both can bias downstream analyses, making some comparisons less reliable simply
+                because certain groups are under-sampled.
+                To address this, we group patients into broader severity categories and time “bins”. This reduces sparsity
+                and gives us a more consistent structure for exploring how immune responses evolve. This figure illustrates
+                the resulting dataset layout, showing how samples are distributed across the severity groups and across our
+                chosen symptom-onset time bins. Some imbalances remain and one case stands out in particular: in the Moderate
+                group, there is only a single sample in the 22+ days bin. We flag this early because a lone data point like
+                this one can disproportionally influence trends later on, especially when we compare gene expressions over
+                time.</p>
+        </div>
+    </section>
 </section>
 
 <section id="diff_ana" class="page-section">
@@ -289,7 +257,7 @@
 
     <div class="data-column">
         <div class="data-double-image">
-            <section id="markers">
+            <div id="markers">
                 <!-- Controls -->
                 <div class="controls">
                     <div class="checkbox-row">
@@ -325,11 +293,11 @@
                 <!-- Visualization container -->
                 <div id="vis"></div>
 
-                <div class="figure-title" style="justify-content: start; width: 500px">
+                <div class="figure-title" style="width:500px; justify-content: start">
                     <h3>Fig. 5</h3>
                     <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
         <p>Next, we move from this static overview to a temporal perspective by plotting these same markers across our
@@ -422,7 +390,7 @@
         disease for each patient.</span>
     </p>
 
-<section id="model_performance" class="model-perf-section">
+    <section id="model_performance" class="model-perf-section">
     <h2>Model performance</h2>
     <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
         labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
@@ -450,7 +418,7 @@
 
     </section>
 
-<section id="feature_importance" class="feature-imp-section">
+    <section id="feature_importance" class="feature-imp-section">
     <h2>Feature importance</h2>
     <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
         these predictions. <span>To do this, we examined feature importance patterns from our models, which highlight the
@@ -543,6 +511,7 @@
 
 
 <script src="/assets/js/scroll-animations.js"></script>
+<script src="/assets/js/active_nav.js"></script>
 
 <!-- D3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
