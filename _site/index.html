@@ -38,10 +38,21 @@
                 
                 
             
-                <li class="navbar-link-item">
+            <li class="navbar-link-item dropdown">
                     
                         <a href="#diff_ana" class="navbar-link">Differential Analysis</a>
                     
+                    <div class="dropdown-content">
+                        
+                            
+                                <a href="#single_marker_analysis">Single Marker Analysis</a>
+                            
+                        
+                            
+                                <a href="#linear_regression">Linear Regression</a>
+                            
+                        
+                    </div>
                 </li>
                 
                 
@@ -152,34 +163,40 @@
     </div>
 </section>
 
-<!-- Gallery Section -->
 
 <section id="data_exploration" class="data-section">
     <h2>Data Exploration</h2>
-    <div class="data-column">
-        <p>The first step we took in our analysis was to understand who the patients
-            in the dataset are. To get a broad view of the cohort, we explored the
-            <span>patients’ clinical metadata</span> such as age, sex, and sample collection site.
-            This initial overview revealed important information in how patients were distributed
-            across these categories. For example, male and female patients were nearly
-            equally represented, while age, smoking status, and sample collection site were notably
-            imbalanced. In particular, samples from older, non-smoking adults at the Ncl collection
-            site made up a large portion of the dataset. This distribution is shown Fig. 1 on the right.
 
-            <br/>
-            We then focused our attention on <span>severity and days from onset</span>, as these were
-            key variables for our
-            project. By visualizing different combinations of these features and how they relate
-            to patient characteristics, we gained an initial qualitative sense of the dataset’s structure
-            and dynamics.
-            However, we found that most patients were captured within the first
-            two weeks of illness and belonged to the Mild and Moderate severity groups. This revealed
-            clear imbalances in the number of patients across severity
-            groups as well as uneven sampling across the days from symptom onset. To address this and
-            ensure meaningful and comparable downstream analysis, we applied preprocessing
-            steps aimed at balancing these distributions. The second figure on the right illustrates the
-            resulting dataset structure, showing how samples are distributed across the severity groups
-            and within our chosen symptom-onset time bins.</p>
+    <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
+        represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
+        clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
+        overview provides important insight into how patients are distributed across these variables. For example,
+        while male and female patients are nearly equally represented, the distributions of age, smoking status,
+        and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
+        non-smoking adults collected at the Ncl collection site.
+    </p>
+
+    <div class="pop-cohort-chart-container"><div class="flourish-embed flourish-survey pop-cohort-chart" data-src="visualisation/26917202"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917202/thumbnail" width="100%" alt="survey visualization" /></noscript></div></div>
+
+
+    <div class="data-column">
+        <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
+            represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
+            clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
+            overview provides important insight into how patients are distributed across these variables. For example,
+            while male and female patients are nearly equally represented, the distributions of age, smoking status,
+            and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
+            non-smoking adults collected at the Ncl collection site.</p>
+
+
+        <div class="donut-chart-container">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26916355"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916355/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+
+
+    </div>
+
+    <div class="data-column">
 
         <div class="data-exploration-image">
             <section id="onset">
@@ -205,19 +222,62 @@
 
             </section>
         </div>
+
+        <p>In the rest of our analysis, two variables from our dataset will be especially useful for answering our
+            research questions: disease severity and days from onset (the number of days since symptoms began). By
+            visualizing these features individually and together as well as relating them to patient characteristics,
+            we can already get an initial qualitative sense of the dataset’s structure, dynamics and limitations.
+            These next two figures reveal two clear imbalances in the data. First, most samples were collected within
+            the first two weeks of illness. Second, a large fraction of patients belongs to the Mild and Moderate
+            severity groups. This leads to uneven representation across severity levels and uneven sampling across
+            the infection timeline. Both can bias downstream analyses, making some comparisons less reliable simply
+            because certain groups are under-sampled.
+            To address this, we group patients into broader severity categories and time “bins”. This reduces sparsity
+            and gives us a more consistent structure for exploring how immune responses evolve. This figure illustrates
+            the resulting dataset layout, showing how samples are distributed across the severity groups and across our
+            chosen symptom-onset time bins. Some imbalances remain and one case stands out in particular: in the Moderate
+            group, there is only a single sample in the 22+ days bin. We flag this early because a lone data point like
+            this one can disproportionally influence trends later on, especially when we compare gene expressions over
+            time.</p>
     </div>
+</section>
+
+<section id="diff_ana" class="page-section">
+    <h2>Differential Analysis</h2>
+
+    <p>Now that we have a clearer picture of the cohort, we can start looking at what the data is really about: how
+        immune cells change their gene expression during COVID-19, and whether these changes differ by severity. To do
+        so, we first focus on a small set of single genes well known to play key roles in antiviral signalling and
+        interferon responses such as ISG15, IFITM3, MX1, and OAS1. These are not meant to capture the full complexity
+        of the immune response, but they offer a simple and interpretable entry point into the dataset.</p>
+
+<section id="single-marker-analysis" class="model-perf-section">
+    <h2>Single Marker Analysis</h2>
+
+    <p>To get a first overview of where these signals are coming from, we summarise the average expression of these
+        marker genes across broad immune families and three grouped severity levels (heatmaps below). Each panel
+        corresponds to a severity group, with rows representing immune cell families and columns representing genes.
+        This makes it easy to instantly spot two things: which cell families express these interferon-stimulated genes
+        the most, and how that pattern shifts with severity. For example, the strongest expression is concentrated in
+        specific immune families (especially innate populations like monocytes and dendritic cells) while other families
+        remain comparatively low. At the same time, the intensity and distribution of expression change across severity
+        groups, suggesting that severity-linked responses are cell-type dependent, not uniform across the immune system.
+        This motivates the next step: moving beyond a static view and examining how these patterns evolve over the course
+        of infection.
+    </p>
+    <div class="triple-pies">
+        <div class="flourish-embed flourish-heatmap" data-src="visualisation/26916985"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26916985/thumbnail" width="100%" alt="heatmap visualization" /></noscript></div>
+        <div class="flourish-embed flourish-heatmap" data-src="visualisation/26917168"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917168/thumbnail" width="100%" alt="heatmap visualization" /></noscript></div>
+        <div class="flourish-embed flourish-heatmap" data-src="visualisation/26917249"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26917249/thumbnail" width="100%" alt="heatmap visualization" /></noscript></div>
+    </div>
+
+    <div class="figure-title" style="width:100%; justify-content: center">
+        <h3>Fig. 2</h3>
+        <p>ISG expression across immune families and severity groups</p>
+    </div>
+
     <div class="data-column">
         <div class="data-double-image">
-            <div class="data-exploration-figure">
-                <img class="data-exploration-image"
-                 src="/assets/img/expr_levels_ISG.png"
-                 alt="ISG expression levels"/>
-
-                <div class="figure-title">
-                    <h3>Fig. 2</h3>
-                    <p>ISG expression across immune families and severity groups</p>
-                </div>
-            </div>
             <section id="markers">
                 <!-- Controls -->
                 <div class="controls">
@@ -250,10 +310,10 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Visualization container -->
                 <div id="vis"></div>
-                
+
                 <div class="figure-title">
                     <h3>Fig. 3</h3>
                     <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier</p>
@@ -261,39 +321,42 @@
             </section>
         </div>
 
-        <p>After exploring the patients' metadata, we wanted to familiarize ourselves with the <span>gene
-        expression levels of different immune cell types, in time.</span> To do so, we hand-picked
-        single genes known to play key roles in antiviral and inflammatory responses, namely ISG15,
-        IFITM3, MX1, and other ISGs. Their expression levels
-        were then plotted across major immune families and across severities, as shown by the first plot
-        on the left. This visualization confirmed that Worst_Clinical_Status was a more
-        meaningful severity variable than Status_on_day_collection.
-        These trends also gave us a sense of which immune families show the strongest
-        severity-linked responses, guiding the choices we made later when selecting cell types
-        and genes for our downstream immune activation analyses. <br/>
-        Lastly, we wanted to examine the <span>temporal trajectories</span> of these interferon-stimulated
-        genes using our predefined time bins. We can see in the second plot on the left that these
-        markers exhibit clear temporal dynamics that differ across severities. This hints towards
-        the potential for interesting results from our downstream analyses of COVID-19 infection trajectories. 
-        It also allowed us to identify an important outlier which can be displayed using the toggle on figure 3.</p>
+        <p>Next, we move from this static overview to a temporal perspective by plotting these same markers across our
+            predefined time bins. Even in this simple marker-based view, we can already see distinct temporal patterns
+            that differ across severity groups, suggesting that the immune response is not only severity-dependent but
+            also dynamic over the course of infection. This is encouraging for our later goal of reconstructing infection
+            trajectories.
+
+            At the same time, this is where an important limitation becomes visible. Our dataset is not truly longitudinal
+            as we do not follow the same individuals at regular intervals. Therefore, any “trajectory” we infer is
+            reconstructed by aligning different patients along a shared timeline. That approach becomes fragile when the
+            data is sparse in certain regions of the timeline. In particular, as we flagged earlier, the Moderate 22+ days
+            bin contains only a single sample, which can disproportionately influence trends. Figure 3 makes this explicit:
+            the interactive toggle lets you include or exclude this outlier, and the resulting change in the trajectory
+            highlights how sensitive some conclusions can be to rare samples.
+
+            Despite this limitation, reconstructing meaningful trajectories can still be informative, especially in the
+            early phases of infection, where much of the dataset is concentrated and trends are more stable. In the rest
+            of the project, we keep these sampling constraints in mind and rely on aggregated, score-based analyses to
+            reduce sensitivity to single observations.</p>
 
     </div>
 </section>
 
-<section id="diff_ana" class="page-section">
-    <h2>Differential Analysis</h2>
+<section id="linear-regression" class="feature-imp-section">
+    <h2>Linear Regression</h2>
     <p>
-By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
-Because differential expression analysis requires untransformed UMI counts,
-these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients),
-the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle.
-This helps to stabilize variance and make the data more interpretable for differential expression analysis.
-We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
-Our approach is to use a linear regression model for each gene’s expression across cells and patients.
-We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families.
-By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
-while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
- with size being defined by the metric returned by the differential expression analysis.
+        By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
+        Because differential expression analysis requires untransformed UMI counts,
+        these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients),
+        the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle.
+        This helps to stabilize variance and make the data more interpretable for differential expression analysis.
+        We use differential analysis to identify the genes whose expression increases or decreases with disease severity.
+        Our approach is to use a linear regression model for each gene’s expression across cells and patients.
+        We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families.
+        By reducing the data to a patient-level summary, we can perform the analysis more efficiently,
+        while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
+         with size being defined by the metric returned by the differential expression analysis.
     </p>
     
     <div class="data-exploration-image">
@@ -311,6 +374,7 @@ while still capturing the key variability in gene expression related to disease 
             <p>Coefficients of the 50 most differentially expressed genes in their respective cells</p>
         </div>
     </div>
+</section>
 
 </section>
 
@@ -428,6 +492,16 @@ while still capturing the key variability in gene expression related to disease 
             still differed slightly in how they distributed importance, they now agreed on the same overall hierarchy of
             immune families. This is shown in Figure 7.
         </p>
+
+        <div class="side-by-side-figures">
+            <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26915340"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26915340/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+            <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26915544"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26915544/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+        </div>
+
+        <div class="figure-title">
+            <h3>Fig. 6</h3>
+            <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
+        </div>
     </section>
 
 
@@ -437,6 +511,25 @@ while still capturing the key variability in gene expression related to disease 
     <h2 id="sidebar-question-title"></h2>
     <p id="sidebar-question-text"></p>
 </div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-names">
+            <span>Matis Ribadeau</span>
+            <span>Teo Wermeille</span>
+            <span>Toni Nigro</span>
+            <span>Nestor Melissargos</span>
+            <span>Matteo Jourdan</span>
+        </div>
+        <a href="https://github.com/matteojourdan/data-story-new" class="github-link" target="_blank" rel="noopener">
+            <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            View on GitHub
+        </a>
+    </div>
+</footer>
+
 
 <script src="/assets/js/scroll-animations.js"></script>
 

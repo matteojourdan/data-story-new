@@ -11,6 +11,11 @@ navigation:
         url: "#data_exploration"
   - title: Differential Analysis
     url: "#diff_ana"
+    sublinks:
+      - title: Single Marker Analysis
+        url: "#single_marker_analysis"
+      - title: Linear Regression
+        url: "#linear_regression"
   - title: Temporal Analysis
     url: "#temp_ana"
   - title: Predictive Model

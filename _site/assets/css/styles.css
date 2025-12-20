@@ -1,5 +1,5 @@
 html, body {
-    margin: 0 0 50px 0; /* top, right, bottom, left */
+    margin: 0; /* top, right, bottom, left */
     padding: 0;
     background-color: var(--bg);
     overflow-x: hidden;
@@ -109,6 +109,7 @@ a {
 .dropdown-content {
     display: none;
     position: absolute;
+    white-space: nowrap;
     left: -12px;
     top: 100%; /* Ensure it starts exactly below the parent */
     padding-bottom: 12px;
@@ -452,9 +453,13 @@ a {
     display: flex;
     flex-direction: row;
     gap: 50px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 3rem;
+}
+
+.data-column p {
+    max-width: 50%;
 }
 
 .data-double-image {
@@ -511,6 +516,17 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
+}
+
+.gap-paragraph {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gap-paragraph p {
+    margin: 0;
+    padding: 0;
 }
 
 /* Floating Research Question Sidebar */
@@ -574,7 +590,7 @@ a {
 .figure-title {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: start;
     align-items: start;
     gap: 1rem;
     margin-top: 2rem;
@@ -621,3 +637,94 @@ a {
 .feat-column p {
     max-width: 500px;
 }
+
+.triple-pies {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.pie-chart {
+    width: 250px;
+    height: auto;
+}
+
+.pop-cohort-chart-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.pop-cohort-chart {
+    width: 800px;
+    height: auto;
+    margin-top: 2rem;
+}
+
+.donut-chart-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 500px;
+}
+
+.site-footer {
+    background: #252323;
+    padding: 30px 20px;
+    margin-top: 60px;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    color: #ccc;
+    font-size: 18px;
+}
+
+.footer-names span:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: var(--border-light);
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.github-link:hover {
+    background: var(--accent);
+}
+
+.github-link svg {
+    flex-shrink: 0;
+}
+
