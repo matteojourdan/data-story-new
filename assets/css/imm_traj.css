@@ -1,0 +1,72 @@
+/* Scoped container for immune trajectory visualization */
+.imm-traj-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  padding: 0;
+  background-color: transparent;
+  color: var(--text-light);
+  margin-top: 2rem;
+}
+
+/* Dropdown container */
+.imm-traj-container .controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.imm-traj-container .controls label {
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Dropdown styling */
+.imm-traj-container select {
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 6px 10px;
+  color: var(--text-light);
+  background-color: var(--bg);
+  border: 1px solid var(--text-light);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.imm-traj-container select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.imm-traj-container select:hover {
+  border-color: var(--accent);
+}
+
+/* Vega container */
+.imm-traj-container #imm-traj-vis {
+  width: 34vw;
+  max-width: 400px;
+  height: auto;
+}
+
+/* Axis labels and text */
+.imm-traj-container .vega-embed text {
+  fill: var(--text-light) !important;
+}
+
+/* Tooltip styling */
+.imm-traj-container .vega-tooltip {
+  font-size: 13px;
+  padding: 8px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: var(--text-light);
+}
+
+/* Remove Vega embed action links spacing */
+.imm-traj-container .vega-embed.has-actions {
+  padding-right: 0;
+}

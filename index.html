@@ -177,20 +177,17 @@ title: Home
 <section id="diff_ana" class="page-section">
     <h2>Differential Analysis</h2>
     <p>
-
-By examining the dataset, we noticed it contained negative values, which confirmed the data was scaled.
-Because differential expression analysis requires untransformed UMI counts, these processed values are not appropriate.
-The raw layer, shown in the middle pannel, provides the correct unprocessed data for further analysis. 
-The goal of the transformations was to help with clustering. After getting back the raw data, we apply a log transformation.
+By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
+Because differential expression analysis requires untransformed UMI counts,
+these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients),
+the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle.
 This helps to stabilize variance and make the data more interpretable for differential expression analysis.
-
-
 We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
 Our approach is to use a linear regression model for each gene’s expression across cells and patients.
-We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level 
-by summing counts across cells within specific immune cell families.
+We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families.
 By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
-while still capturing the key variability in gene expression related to disease severity.
+while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
+ with size being defined by the metric returned by the differential expression analysis.
     </p>
     
     <div class="data-exploration-image">
@@ -220,6 +217,18 @@ while still capturing the key variability in gene expression related to disease 
         Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
 
     </p>
+
+    <div class="imm-traj-container">
+        <div class="controls">
+            <label for="imm-traj-dropdown">Cell Type:</label>
+            <select id="imm-traj-dropdown"></select>
+        </div>
+        <div id="imm-traj-vis"></div>
+        <div class="figure-title">
+            <h3>Fig. 6:</h3>
+            <p>Cell-type scores across time bins and severity groups</p>
+        </div>
+    </div>
 </section>
 
 <section id="pred_mod" class="page-section">
@@ -252,13 +261,13 @@ while still capturing the key variability in gene expression related to disease 
         <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885113"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885113/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
     </div>
 
-    <div class="figure-title" style="width: 800px">
-        <h3>Fig. 5</h3>
-        <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
-            measured in Accuracy vs Macro-F1</p>
-    </div>
+        <div class="figure-title" style="width: 800px">
+            <h3>Fig. 5</h3>
+            <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
+                measured in Accuracy vs Macro-F1</p>
+        </div>
 
-</section>
+    </section>
 
 <section id="feature_importance" class="feature-imp-section">
     <h2>Feature importance</h2>
@@ -286,34 +295,34 @@ while still capturing the key variability in gene expression related to disease 
         relevance for severity prediction in this setting. These observations are summarized in Figure 6 below.
     </p>
 
-    <div class="side-by-side-figures">
-        <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26906116"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26906116/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
-        <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26904223"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26904223/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
-    </div>
+        <div class="side-by-side-figures">
+            <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26906116"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26906116/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+            <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26904223"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26904223/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+        </div>
 
-    <div class="figure-title">
-        <h3>Fig. 6</h3>
-        <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
-    </div>
+        <div class="figure-title">
+            <h3>Fig. 6</h3>
+            <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
+        </div>
 
 
-    <p>
-        We then shifted to grouped severity categories and time bins, under which the immune features
-        driving predictions became clearer and more consistent across models. In this setting, both models
-        agreed that myeloid cells, especially dendritic cells and monocytes, were
-        central to disease severity. This highlights the key role of innate immune dysregulation and antigen
-        presentation in shaping overall COVID-19 outcomes.
-        The adaptive immune system also remained prominent, as CD4 T cells ranked among the most
-        important contributors, followed by B and plasma cells, showing the importance of adaptive
-        immune responses in severe disease.
-        Compared to the ungrouped analysis, importance was no longer spread across many isolated cell subtypes but rather
-        at the level of broader cell families. This suggests that the grouped
-        representation captures the bigger picture and identifies the core immune mechanisms underlying disease progresion.
-        While the two models
-        still differed slightly in how they distributed importance, they now agreed on the same overall hierarchy of
-        immune families. This is shown in Figure 7.
-    </p>
-</section>
+        <p>
+            We then shifted to grouped severity categories and time bins, under which the immune features
+            driving predictions became clearer and more consistent across models. In this setting, both models
+            agreed that myeloid cells, especially dendritic cells and monocytes, were
+            central to disease severity. This highlights the key role of innate immune dysregulation and antigen
+            presentation in shaping overall COVID-19 outcomes.
+            The adaptive immune system also remained prominent, as CD4 T cells ranked among the most
+            important contributors, followed by B and plasma cells, showing the importance of adaptive
+            immune responses in severe disease.
+            Compared to the ungrouped analysis, importance was no longer spread across many isolated cell subtypes but rather
+            at the level of broader cell families. This suggests that the grouped
+            representation captures the bigger picture and identifies the core immune mechanisms underlying disease progresion.
+            While the two models
+            still differed slightly in how they distributed importance, they now agreed on the same overall hierarchy of
+            immune families. This is shown in Figure 7.
+        </p>
+    </section>
 
 
 </section>
@@ -343,3 +352,7 @@ while still capturing the key variability in gene expression related to disease 
 <!-- Raw/Log histogram -->
 <link rel="stylesheet" href="{{ '/assets/css/raw_log.css' | relative_url }}">
 <script src="{{ '/assets/js/raw_log.js' | relative_url }}"></script>
+
+<!-- Immune trajectory visualization -->
+<link rel="stylesheet" href="{{ '/assets/css/imm_traj.css' | relative_url }}">
+<script src="{{ '/assets/js/imm_traj.js' | relative_url }}"></script>
