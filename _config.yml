@@ -25,7 +25,3 @@ navigation:
         url: "#model_performance"
       - title: Feature Importance
         url: "#feature_importance"
-  - title: Gallery
-    url: /gallery
-  - title: Data
-    url: /data

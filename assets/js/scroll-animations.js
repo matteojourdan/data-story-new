@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 'pred_mod',
             title: '3.',
-            text: 'Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?'
+            text: 'Can a patient’s immune profile be used to predict the severity of their infection, and which features contribute most to this prediction?'
         }
     ];
 
