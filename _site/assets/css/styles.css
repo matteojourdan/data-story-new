@@ -320,6 +320,16 @@ a {
     color: white;
 }
 
+.intro-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    width: 800px;
+    padding: 0 116px 0 116px;
+    z-index: 2; /* Ensure text is above the image */
+}
+
 .introduction-section h2 {
     font-size: 3.5rem;
     margin-bottom: 20px;

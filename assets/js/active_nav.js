@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateActiveNav = () => {
         let currentSection = "";
 
+        // If at the very top of the page, don't highlight any section
+        if (window.scrollY < 500) {
+            navLinks.forEach(link => link.classList.remove("active"));
+            return;
+        }
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
