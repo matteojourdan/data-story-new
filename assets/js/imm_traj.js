@@ -1,3 +1,6 @@
+---
+---
+
 (function() {
   let rawData = [];
   let cellTypes = [];
@@ -5,7 +8,7 @@
   const binOrder = ["0–6", "7–10", "11–14", "15–21", "22+"];
   const sevOrder = ["Mild-Asym.", "Moderate", "Severe-Crit."];
 
-  d3.csv("/assets/data/ct_scores_with_bins.csv").then(data => {
+  d3.csv("{{ '/assets/data/ct_scores_with_bins.csv' | relative_url }}").then(data => {
     rawData = data;
 
     // Get cell type columns (all columns except patient_id, day_bin, sev_bin)
