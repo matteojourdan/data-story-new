@@ -28,7 +28,7 @@ title: Home
         a predictive model with what we found.</p>
 </section>
 
-<section id="research_questions" class="page-section">
+<section id="research_questions" class="research-section">
     <h2>Research questions</h2>
     <div class="research-questions-container">
         <div class="research-question left">
@@ -177,14 +177,14 @@ title: Home
 <section id="diff_ana" class="page-section">
     <h2>Differential Analysis</h2>
     <p>
-By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled. 
-Because differential expression analysis requires untransformed UMI counts, 
-these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients), 
-the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle. 
-This helps to stabilize variance and make the data more interpretable for differential expression analysis. 
+By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
+Because differential expression analysis requires untransformed UMI counts,
+these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients),
+the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle.
+This helps to stabilize variance and make the data more interpretable for differential expression analysis.
 We use differential analysis to identify the genes whose expression increases or decreases with disease severity. 
-Our approach is to use a linear regression model for each gene’s expression across cells and patients. 
-We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families. 
+Our approach is to use a linear regression model for each gene’s expression across cells and patients.
+We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families.
 By reducing the data to a patient-level summary, we can perform the analysis more efficiently, 
 while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
  with size being defined by the metric returned by the differential expression analysis.
@@ -237,29 +237,29 @@ while still capturing the key variability in gene expression related to disease 
         information with immune system signals. The clinical information includes factors such as age, sex, smoking
         status, and time since symptom onset. The immune profile is summarized by the cell-level scores computed earlier,
         which capture immune activation based on the expression of key genes associated with COVID-19 severity. By
-        bringing these two sources of information together, the model aims to anticipate the overall trajectory of the
-        disease for each patient.
+        bringing these two sources of information together, <span>the model aims to anticipate the overall trajectory of the
+        disease for each patient.</span>
     </p>
 
-    <section id="model_performance" class="model-perf-section">
-        <h2>Model performance</h2>
-        <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
-            labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
-            clinical settings. We then repeated the analysis using the grouped severity categories and discretized time bins
-            introduced in our Data Exploration. This second approach allowed us to assess whether a simpler, biologically
-            motivated representation of the data leads to better interpretability and stronger predictions. <br/>
-            Across both settings, we compared different machine-learning models to evaluate how accurately they could
-            predict disease severity. Figure 5 below summarizes model performance using accuracy and F1-score.
-            Overall, the grouped-severity and time-binned representation leads to a clear improvement for both models,
-            with especially strong gains for XGBoost. This suggests that organizing clinical outcomes into biologically
-            coherent categories and disease stages reduces noise and ambiguity in the labels, making severity easier to
-            predict. Under this formulation, XGBoost performs best overall, indicating that meaningful predictions of
-            COVID-19 severity can be made using this model.
-        </p>
-        <div class="side-by-side-figures">
-            <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885244"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885244/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
-            <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885113"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885113/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
-        </div>
+<section id="model_performance" class="model-perf-section">
+    <h2>Model performance</h2>
+    <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
+        labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
+        clinical settings. We then repeated the analysis using the grouped severity categories and discretized time bins
+        introduced in our Data Exploration. This second approach allowed us to assess whether a simpler, biologically
+        motivated representation of the data leads to better interpretability and stronger predictions. <br/>
+        Across both settings, <span>we compared different machine-learning models</span> to evaluate how accurately they could
+        predict disease severity. Figure 5 below summarizes model performance using accuracy and F1-score.
+        Overall, the grouped-severity and time-binned representation leads to a clear improvement for both models,
+        with especially strong gains for XGBoost. This suggests that organizing clinical outcomes into biologically
+        coherent categories and disease stages reduces noise and ambiguity in the labels, making severity easier to
+        predict. Under this formulation, XGBoost performs best overall, indicating that meaningful predictions of
+        COVID-19 severity can be made using this model.
+    </p>
+    <div class="side-by-side-figures">
+        <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885244"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885244/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
+        <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885113"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885113/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
+    </div>
 
         <div class="figure-title" style="width: 800px">
             <h3>Fig. 5</h3>
@@ -269,32 +269,31 @@ while still capturing the key variability in gene expression related to disease 
 
     </section>
 
-    <section id="feature_importance" class="feature-imp-section">
-        <h2>Feature importance</h2>
-        <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
-            these predictions. To do this, we examined feature importance patterns from our models, which highlight the
-            which immune cells and demographic factors most strongly influence the predictions. <br/>
-            To properly analyze feature importance, we looked at it through two axes. First, we visualized how different algorithms
-            prioritize immune signals, trying to identify patterns that appear consistently across models versus those that are
-            model-specific. We then compared the patterns identified using the dataset's original labels against those found using
-            our grouped severities and time representations. This allowed us to see how simplifying the clinical labels affects
-            which features emerge as important. <br/>
-            Features that remain influential across both strategies likely reflect stable immunological correlates of COVID-19
-            severity, while others appear sensitive to noise in clinical labeling and timing.
-        </p>
-        <p>
-            Starting with the ungrouped severity and time labels, we found that both models highlighted biologically
-            meaningful immune pathways linked to COVID-19 severity, although they disagreed on the ordering of these features.
-            The Random Forest model spread importance across
-            multiple related immune cell types, namely CD4 and CD8 T cells, dendritic cells and monocytes, suggesting
-            that severity is associated with coordinated changes across several immune
-            compartments rather than a single dominant signal.
-            In contrast, XGBoost focused on a smaller set of highly informative features within these same immune families.
-            Myeloid cells and CD4 T cells emerged as especially influential, reflecting more targeted immune signatures that
-            best distinguish severe from mild disease.
-            Across both models, platelet-related and progenitor cell signals played only a minor role, suggesting limited
-            relevance for severity prediction in this setting. These observations are summarized in Figure 6 below.
-        </p>
+<section id="feature_importance" class="feature-imp-section">
+    <h2>Feature importance</h2>
+    <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
+        these predictions. <span>To do this, we examined feature importance patterns from our models, which highlight the
+        immune cells that most strongly influence the predictions.</span> To properly analyze feature importance, we looked at it through two axes. First, we visualized how our two algorithms
+        prioritize immune signals, and what differences there are between them.
+        Our second axis aimed to compare the feature rankings obtained when using the dataset's original labels against those found using
+        our grouped severities and time representations. This allowed us to see how simplifying the clinical labels affects
+        which features emerge as important. <br/>
+        Features that remain influential across both models likely represent robust biological signals linked to COVID-19 severity,
+        and could be prioritized for further study.
+    </p>
+    <p>
+        Starting with the ungrouped severity and time labels, we found that both models highlighted biologically
+        meaningful immune pathways linked to COVID-19 severity, although they disagreed on the ordering of these features.
+        The Random Forest model (on the right below) spread importance across
+        multiple related immune cell types, namely CD4 and CD8 T cells, dendritic cells and monocytes, suggesting
+        that severity is associated with coordinated changes across several immune
+        compartments rather than a single dominant signal.
+        In contrast, XGBoost (on the left below) focused on a smaller set of highly informative features within these same immune families.
+        Myeloid cells and CD4 T cells emerged as especially influential, reflecting more targeted immune signatures that
+        best distinguish severe from mild disease.
+        Across both models, platelet-related and progenitor cell signals (not shown) played only a minor role, suggesting limited
+        relevance for severity prediction in this setting. These observations are summarized in Figure 6 below.
+    </p>
 
         <div class="side-by-side-figures">
             <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26906116"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26906116/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
