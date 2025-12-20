@@ -1,18 +1,16 @@
 /* ONLY applies inside the onset plot */
 #onset #chart {
-    width: 440px;
+    width: 400px;
     height: auto;
     background: transparent;
     border-radius: 8px;
     padding: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 #onset #controls {
     display: flex;
     flex-direction: row;
-    justify-content: end;
-    margin-bottom: 10px;
+    justify-content: start;
 }
 
 #onset #severitySelect {
@@ -41,7 +39,6 @@
 }
 
 #onset #legend {
-    margin-bottom: 15px;
     font-size: 13px;
 }
 

@@ -44,7 +44,7 @@ title: Home
             </div>
             <div class="research-question left">
                 <span class="question-number">3.</span>
-                <p>Can a patient’s immune profile combined with their intrinsic characteristics (sex, age, smoking habits, ...) be used to predict the severity of their infection?</p>
+                <p>Can a patient’s immune profile be used to predict the severity of their infection, and which features contribute most to this prediction?</p>
             </div>
         </div>
     </section>
@@ -95,7 +95,7 @@ title: Home
 
         <div class="data-column">
 
-            <div class="data-exploration-image">
+            <div class="data-double-image">
                 <div id="onset">
                     <!-- Controls -->
                     <div id="controls" class="#controls">
@@ -112,12 +112,21 @@ title: Home
                     <!-- Tooltip -->
                     <div id="tooltip" class="tooltip"></div>
 
-                    <div class="figure-title">
+                    <div class="figure-title" style="margin-top: 0">
                         <h3>Fig. 3</h3>
                         <p>Distribution of patients in days from onset, across severities.</p>
                     </div>
 
                 </div>
+
+                <div>
+                    <div class="flourish-embed flourish-chart bar-stacked" data-src="visualisation/26920025"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26920025/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+                    <div class="figure-title" style="margin-top: 0">
+                        <h3>Fig. 4</h3>
+                        <p>Distribution of patients across our chosen severity and time labels.</p>
+                    </div>
+                </div>
+
             </div>
 
             <p>In the rest of our analysis, two variables from our dataset will be especially useful for answering our
@@ -170,7 +179,7 @@ title: Home
     </div>
 
     <div class="figure-title" style="width:100%; justify-content: center">
-        <h3>Fig. 4</h3>
+        <h3>Fig. 5</h3>
         <p>ISG expression across immune families and severity groups.</p>
     </div>
 
@@ -213,7 +222,7 @@ title: Home
                 <div id="vis"></div>
 
                 <div class="figure-title" style="width:500px; justify-content: start">
-                    <h3>Fig. 5</h3>
+                    <h3>Fig. 6</h3>
                     <p>Temporal trajectories of interferon-stimulated genes, toggle for outlier.</p>
                 </div>
             </div>
@@ -260,7 +269,7 @@ title: Home
     <div class="data-exploration-image">
         <div id="raw-log-chart"></div>
         <div class="figure-title">
-            <h3>Fig. 6</h3>
+            <h3>Fig. 7</h3>
             <p>Distribution of scaled and raw UMI counts.</p>
         </div>
     </div>
@@ -268,7 +277,7 @@ title: Home
     <div class="packed-circles">
         <div class="flourish-embed flourish-hierarchy packed-circles" data-src="visualisation/26892943"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26892943/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
         <div class="figure-title" style="width:800px">
-            <h3>Fig. 7</h3>
+            <h3>Fig. 8</h3>
             <p>Coefficients of the 50 most differentially expressed genes in their respective cells.</p>
         </div>
     </div>
@@ -293,7 +302,7 @@ title: Home
         </div>
         <div id="imm-traj-vis"></div>
         <div class="figure-title">
-            <h3>Fig. 8</h3>
+            <h3>Fig. 9</h3>
             <p>Cell-type scores across time bins and severity groups.</p>
         </div>
     </div>
@@ -330,7 +339,7 @@ title: Home
     </div>
 
         <div class="figure-title" style="width: 800px">
-            <h3>Fig. 9</h3>
+            <h3>Fig. 10</h3>
             <p>Difference in performance of XGBoost and Random forest using grouped or ungrouped severities and time bins,
                 measured in Accuracy vs Macro-F1</p>
         </div>
@@ -369,7 +378,7 @@ title: Home
         </div>
 
         <div class="figure-title">
-            <h3>Fig. 10</h3>
+            <h3>Fig. 11</h3>
             <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
         </div>
 
@@ -397,7 +406,7 @@ title: Home
         </div>
 
         <div class="figure-title">
-            <h3>Fig. 11</h3>
+            <h3>Fig. 12</h3>
             <p>Feature importance of immune cells according to RF and XGB models, using grouped labels.</p>
         </div>
     </section>

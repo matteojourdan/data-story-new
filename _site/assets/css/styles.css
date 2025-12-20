@@ -689,6 +689,11 @@ a {
     height: auto;
 }
 
+.bar-stacked {
+    width: 500px;
+    height: auto;
+}
+
 .site-footer {
     background: #252323;
     padding: 30px 20px;
