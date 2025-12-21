@@ -83,6 +83,14 @@
                 </li>
                 
                 
+            
+                <li class="navbar-link-item">
+                    
+                        <a href="#conclusion" class="navbar-link">Conclusion</a>
+                    
+                </li>
+                
+                
             </ul>
     </div>
 </nav>
@@ -155,7 +163,7 @@
             <p>Demographics of our dataset.</p>
         </div>
 
-        <p style="margin: 70px 0 50px 0">In the rest of our analysis, two variables from our dataset will be especially useful for answering our
+        <p style="margin: 50px 0 50px 0">In the rest of our analysis, two variables from our dataset will be especially useful for answering our
             research questions: <span>disease severity and days from onset</span> (the number of days since symptoms began). By
             visualizing these features individually and together as well as relating them to patient characteristics,
             we can already get an initial qualitative sense of the dataset’s structure, dynamics and limitations.
@@ -327,49 +335,84 @@
 <section id="linear_regression" class="model-perf-section">
     <h2>Linear Regression</h2>
     <p>
-        By examining the dataset, we noticed it contained negative values, which confirmed the data had been scaled.
-        Because differential expression analysis requires untransformed UMI counts,
-        these processed values are not appropriate. However, as seen in figure 4 (data from cd4.prolif of a few patients),
-        the raw data still needs to be transformed. We chose a log1p transform which can be displayed using the toggle.
-        This helps to stabilize variance and make the data more interpretable for differential expression analysis.
-        We use differential analysis to identify the genes whose expression increases or decreases with disease severity.
-        Our approach is to use a linear regression model for each gene’s expression across cells and patients.
-        We chose to do a pseudo-bulk analysis, aggregating gene expression at the patient level by summing counts across cells within specific immune cell families.
-        By reducing the data to a patient-level summary, we can perform the analysis more efficiently,
-        while still capturing the key variability in gene expression related to disease severity. The results are displayed in the packed circles graph,
-         with size being defined by the metric returned by the differential expression analysis.
+        To move beyond a few handpicked markers and capture the immune response more systematically, we now turn to a
+        genome-wide differential analysis. A first look at the expression matrix shows that it contains negative values,
+        $confirming that the data has already been scaled and transformed. Since differential expression models are
+        typically defined on unscaled raw count data, these processed values are not suitable inputs. Figure 7
+        illustrates this on a small example (CD4.Prolif cells from a few patients): the raw signal is highly skewed,
+        and a simple transformation makes the distribution much more stable. We therefore apply a log1p transform,
+        which you can toggle on the figure, to reduce the impact of extreme values and make gene expression more
+        comparable across patients.
     </p>
     
     <div class="data-exploration-image">
         <div id="raw-log-chart"></div>
-        <div class="figure-title">
+        <div class="figure-title" style="margin-bottom: 20px">
             <h3>Fig. 7</h3>
             <p>Distribution of scaled and raw UMI counts.</p>
         </div>
     </div>
 
+    <p>
+        With the data in a more appropriate form, we now aim to identify genes whose expression systematically increases
+        or decreases with disease severity. Concretely, we fit a linear regression model for each gene, using severity
+        as the main variable of interest and adjusting for any relevant covariates. Figure 8 provides an overview of the
+        results. Each circle represents a cell type; within it, we highlight the genes with a significant severity
+        association (after FDR correction). The circle size reflects the overall strength of the signal in that cell type,
+        based on the summed magnitude of the gene-level metrics. This view helps us quickly identify which immune
+        compartments show the clearest severity-linked transcriptional shifts.
+    </p>
+
     <div class="packed-circles">
         <div class="flourish-embed flourish-hierarchy packed-circles" data-src="visualisation/26892943"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26892943/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
-        <div class="figure-title" style="width:800px">
+        <div class="figure-title" style="width:800px; margin-bottom: 20px">
             <h3>Fig. 8</h3>
             <p>Coefficients of the 50 most differentially expressed genes in their respective cells.</p>
         </div>
     </div>
+
+    <p>
+        To move from these gene-level results to something we can compare across patients, we translate the regression
+        output into an immune score. The regression provides a cell-type–specific metric for each gene, capturing both
+        the direction and the strength of its association with severity in that immune compartment. We then combine these
+        metrics with each patient’s pseudo-bulk expression (aggregate expression across all cells of same type): for
+        every patient and every cell type, we take the expression level of each gene and multiply it by its corresponding
+        metric for that same cell type, so that genes with stronger severity associations contribute more to the score.
+        Summing these weighted contributions gives a single score per patient and cell type which gives us a way to
+        quantify how strongly linked a cell population is to severity.
+    </p>
+
+    <p>
+        With these cell-type–specific immune scores in hand, we can now directly answer the first part of our research
+        question: we not only identify the genes most associated with COVID-19 severity, but we also condense this
+        information into an interpretable patient-level score. However, severity alone does not tell the full story.
+        COVID-19 is a dynamic process, and immune activity is expected to rise and fall as the infection evolves. This
+        naturally leads to our next question: are these immune responses temporally structured? In the following section,
+        we use the same scores to track immune activity across our time bins and compare how trajectories differ between
+        severity groups. We focus not only on overall levels, but also on changes in amplitude, timing, and variability
+        over the course of infection.
+    </p>
 </section>
 
 </section>
 
 <section id="temp_ana" class="page-section">
     <h2>Temporal Analysis</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
+    <p>
+        Once we have an immune score for each patient and each cell type, we can ask our next question: do immune
+        responses follow a time structure, and do the severities evolve differently? In other words, are the differences
+        we saw earlier just “stronger vs weaker” responses, or do they also differ in timing, peaks, and persistence?
+    </p>
+    <p>
+        To explore this, we align samples along a common infection timeline using broad time bins and group patients by
+        severity. For each immune cell type, we average the immune scores within each severity group and time bin to
+        obtain a trajectory over time. In Figure 9, the x-axis shows the binned timeline and the y-axis the normalized
+        immune score; each colored line corresponds to a severity group, with higher values indicating stronger
+        severity-linked activity. The dropdown menu lets you switch between immune families (e.g., NK, CD4, CD8) and
+        explore their subtypes.
     </p>
 
-    <div class="temp-ana-controls">
+    <div class="temp-ana-controls" style="margin-top: 30px">
         <label for="tempAnaSelect">Select Graph:</label>
         <select id="tempAnaSelect">
             <option value="graph1">B and Plasma cells</option>
@@ -406,38 +449,63 @@
         </div>
     </div>
 
-    <div class="figure-title">
+    <div class="figure-title" style="margin-bottom: 30px">
         <h3>Fig. 9</h3>
         <p>Cell-type immune scores across time bins and severity groups.</p>
     </div>
+
+    <p>
+        Across many immune compartments, the trajectories are clearly not flat: immune activity changes over time,
+        which suggests the response is temporally structured. Just as importantly, severity groups often follow
+        distinct patterns. In several cell types, severe/critical cases show larger deviations early on and, in some
+        cases, responses that remain elevated or shift later in the timeline. Mild/asymptomatic cases tend to show
+        smaller fluctuations and earlier stabilization. <br/>
+        That said, these dynamics are not uniform across the immune system. Some cell types show strong separation
+        between severity groups, while others overlap substantially or fluctuate more. This heterogeneity is exactly
+        why an interactive view is helpful: instead of listing dozens of similar plots, you can quickly explore where
+        the most pronounced differences appear.
+    </p>
+
+    <p>
+        One important limitation is that this dataset is not fully longitudinal as we are not following the same
+        individuals at regular intervals. The “trajectories” we show are reconstructed by aligning different patients
+        along a shared timeline. This works best where the data is dense (especially early after symptom onset) and
+        becomes less reliable in sparse regions. As noted earlier, for example, the Moderate 22+ days bin contains
+        only a single sample, which can disproportionately affect the shape of the curve in that time window.
+    </p>
+
+    <p>
+        Even with these constraints, the patterns are still informative. The fact that many cell types show consistent
+        time structure and severity-dependent differences suggests that temporal immune features carry meaningful signal.
+        This naturally sets up the next step of the project: using cell-level immune scores (and potentially their
+        time-dependent behavior) as inputs to a predictive model that estimates disease severity from a patient’s immune
+        profile.
+    </p>
 
 
 </section>
 
 <section id="pred_mod" class="page-section">
     <h2>Predictive Model</h2>
-    <p>To predict how severe a patient’s COVID-19 infection will become, we developed a model that combines clinical
-        information with immune system signals. The clinical information includes factors such as age, sex, smoking
-        status, and time since symptom onset. The immune profile is summarized by the cell-level scores computed earlier,
-        which capture immune activation based on the expression of key genes associated with COVID-19 severity. By
-        bringing these two sources of information together, <span>the model aims to anticipate the overall trajectory of the
-        disease for each patient.</span>
+    <p>
+        Up to this point, we’ve shown that immune activity differs across severity groups and evolves over the course
+        of infection. The next step is to test whether these patterns are predictive: can we use a patient’s immune
+        profile (summarized by our immune scores), together with basic patient characteristics, to predict how severe
+        their infection will become? We try the prediction task in two ways. First, we use the dataset’s original
+        clinical labels and continuous time information, which reflects how disease progression is recorded in practice.
+        Then, we repeat the same modeling using the grouped severity categories and time bins introduced earlier.
+        This second setup matches the biological staging we use throughout the data story and helps reduce label noise.
     </p>
 
     <section id="model_performance" class="model-perf-section">
     <h2>Model performance</h2>
-    <p>We approached this prediction task in two complementary ways. First, we used the dataset’s original severity
-        labels and continuous days-from-onset measurements, reflecting how disease progression is recorded in real-world
-        clinical settings. We then repeated the analysis using the grouped severity categories and discretized time bins
-        introduced in our Data Exploration. This second approach allowed us to assess whether a simpler, biologically
-        motivated representation of the data leads to better interpretability and stronger predictions. <br/>
-        Across both settings, <span>we compared different machine-learning models</span> to evaluate how accurately they could
-        predict disease severity. Figure 5 below summarizes model performance using accuracy and F1-score.
-        Overall, the grouped-severity and time-binned representation leads to a clear improvement for both models,
-        with especially strong gains for XGBoost. This suggests that organizing clinical outcomes into biologically
-        coherent categories and disease stages reduces noise and ambiguity in the labels, making severity easier to
-        predict. Under this formulation, XGBoost performs best overall, indicating that meaningful predictions of
-        COVID-19 severity can be made using this model.
+    <p>
+        Figure 10 compares two models Random Forest (RF) and XGBoost (XGB) under both setups. The left panel shows
+        Macro-F1 (a score that balances performance across classes, which matters when groups are imbalanced), and
+        the right panel shows accuracy. What stands out is the shift from left to right: when we move from ungrouped
+        labels / raw time to grouped severities / time bins, performance improves for both models, and especially for
+        XGBoost. This suggests that the grouped representation makes the learning problem cleaner: severity stages
+        become more consistent, and the model can focus on the signal rather than on ambiguous boundaries.
     </p>
     <div class="side-by-side-figures" style="margin: 50px 0 0 0">
         <div class="flourish-embed flourish-slope figure-flourish" data-src="visualisation/26885244"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26885244/thumbnail" width="100%" alt="slope visualization" /></noscript></div>
@@ -454,28 +522,18 @@
 
     <section id="feature_importance" class="feature-imp-section">
     <h2>Feature importance</h2>
-    <p>Beyond asking how well our models predict COVID-19 severity, we wanted to understand what specific features drive
-        these predictions. <span>To do this, we examined feature importance patterns from our models, which highlight the
-        immune cells that most strongly influence the predictions.</span> To properly analyze feature importance, we looked at it through two axes. First, we visualized how our two algorithms
-        prioritize immune signals, and what differences there are between them.
-        Our second axis aimed to compare the feature rankings obtained when using the dataset's original labels against those found using
-        our grouped severities and time representations. This allowed us to see how simplifying the clinical labels affects
-        which features emerge as important. <br/>
-        Features that remain influential across both models likely represent robust biological signals linked to COVID-19 severity,
-        and could be prioritized for further study.
+    <p>
+        Predicting well is only part of the story, we also want to understand what the models are looking at. To do
+        that, we examine feature importance and map it back to immune cell types. On the Sankey diagrams below,
+        features start on the left as cell subtypes, flow into broader immune families (middle), and end at the
+        model (right). The thickness of the flow reflects how much that feature contributes to the prediction.
     </p>
     <p>
-        Starting with the ungrouped severity and time labels, we found that both models highlighted biologically
-        meaningful immune pathways linked to COVID-19 severity, although they disagreed on the ordering of these features.
-        The Random Forest model (on the right below) spread importance across
-        multiple related immune cell types, namely CD4 and CD8 T cells, dendritic cells and monocytes, suggesting
-        that severity is associated with coordinated changes across several immune
-        compartments rather than a single dominant signal.
-        In contrast, XGBoost (on the left below) focused on a smaller set of highly informative features within these same immune families.
-        Myeloid cells and CD4 T cells emerged as especially influential, reflecting more targeted immune signatures that
-        best distinguish severe from mild disease.
-        Across both models, platelet-related and progenitor cell signals (not shown) played only a minor role, suggesting limited
-        relevance for severity prediction in this setting. These observations are summarized in Figure 11 below.
+        In Figure 11, feature importance is shown for the models trained on the original labels. Both models point
+        to biologically plausible immune compartments, but they do so in different ways. Random Forest spreads its
+        importance more broadly across several immune families, suggesting that it relies on a wider combination of
+        signals. XGBoost, in contrast, concentrates importance into a smaller set of highly informative features, still
+        within the same major immune families, indicating a more selective decision strategy.
     </p>
 
         <div class="side-by-side-figures" style="margin: 50px 0 0 0">
@@ -483,27 +541,20 @@
             <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26904223"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26904223/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
         </div>
 
-        <div class="figure-title">
+        <div class="figure-title" style="margin-bottom: 30px">
             <h3>Fig. 11</h3>
             <p>Feature importance of immune cells according to RF and XGB models, using original labels.</p>
         </div>
 
 
         <p>
-            We then shifted to grouped severity categories and time bins, under which the immune features
-            driving predictions became clearer and more consistent across models. In this setting, both models
-            agreed that myeloid cells, especially dendritic cells and monocytes, were
-            central to disease severity. This highlights the key role of innate immune dysregulation and antigen
-            presentation in shaping overall COVID-19 outcomes.
-            The adaptive immune system also remained prominent, as CD4 T cells ranked among the most
-            important contributors, followed by B and plasma cells, showing the importance of adaptive
-            immune responses in severe disease.
-            Compared to the ungrouped analysis, importance was no longer spread across many isolated cell subtypes but rather
-            at the level of broader cell families. This suggests that the grouped
-            representation captures the bigger picture and identifies the core immune mechanisms underlying disease progresion.
-            While the two models
-            still differed slightly in how they distributed importance, they now agreed on the same overall hierarchy of
-            immune families. This is shown in Figure 12.
+            In Figure 12, we repeat the same feature-importance view using the grouped severity and binned time setup.
+            Here, the picture becomes clearer and more consistent across models: the most influential signals concentrate
+            in a smaller set of immune families, with myeloid cells (dendritic cells / monocytes) standing out as central
+            drivers. Adaptive immune compartments (especially CD4 T cells, followed by B & plasma cells) also remain
+            prominent. Compared to the ungrouped setup, importance is less scattered across many isolated subtypes and
+            instead aligns more strongly with broader immune families, which makes the story easier to interpret
+            biologically.
         </p>
 
         <div class="side-by-side-figures" style="margin: 50px 0 0 0">
@@ -511,13 +562,39 @@
             <div class="flourish-embed flourish-sankey sankey-diagram" data-src="visualisation/26915544"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26915544/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
         </div>
 
-        <div class="figure-title">
+        <div class="figure-title" style="margin-bottom: 30px">
             <h3>Fig. 12</h3>
             <p>Feature importance of immune cells according to RF and XGB models, using grouped labels.</p>
         </div>
+
+        <p>
+            We can now answer our third research question: yes, immune profiles carry predictive signal for COVID-19
+            severity. Across models, the most informative features consistently come from a few key immune compartments,
+            mainly myeloid cells (especially monocytes and dendritic cells) and T-cell populations, with B/plasma cells
+            also contributing. In our final, grouped setup, prediction is driven primarily by these immune signatures,
+            while the exact timing information plays a much smaller role. Overall, this suggests that severity is
+            reflected less by a single “when” factor and more by which immune programs are activated in each patient.
+        </p>
     </section>
 
 
+</section>
+
+<section id="conclusion" class="page-section">
+    <h2>Conclusion</h2>
+    <p>
+        Across this project, we move from early marker-based intuition to systematic regression, then to immune scores,
+        temporal trajectories, and finally prediction. The consistent theme is that COVID-19 severity is not explained
+        by a single gene or a single immune cell type, but by a structured, cell-type dependent immune response that
+        unfolds over time. Even with the limitations of non-longitudinal sampling, the fact that we can summarize immune
+        activity into interpretable scores, observe severity-dependent trajectories, and use these signals to predict
+        severity suggests that immune profiling can meaningfully inform how we understand and stratify COVID-19 outcomes.
+        At the same time, our analysis also highlights what could be gained with more data. Because later stages of
+        infection are sparsely sampled in this cohort, our time-binned trajectories remain limited by coverage. With
+        a larger and more evenly sampled dataset, time bins could carry even more value: models could learn richer
+        stage-specific immune signatures, better capture differences in timing and persistence, and potentially improve
+        severity prediction, especially for separating closely related clinical groups.
+    </p>
 </section>
 
 <div id="sidebar-question" class="sidebar-question">

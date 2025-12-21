@@ -25,3 +25,5 @@ navigation:
         url: "#model_performance"
       - title: Feature Importance
         url: "#feature_importance"
+  - title: Conclusion
+    url: "#conclusion"
