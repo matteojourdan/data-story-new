@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 'temp_ana',
             title: '2.',
-            text: 'Can we reconstruct the timeline and trajectory of a patient’s COVID-19 infection?'
+            text: 'Are immune responses temporally structured, and do different severity groups follow distinct temporal trajectories characterized by differences in the amplitude, timing, or variability of immune activity?'
         },
         {
             id: 'pred_mod',
