@@ -758,3 +758,51 @@ a {
     color: var(--accent);
     font-weight: bold;
 }
+
+.graph-temp-ana {
+    width: 900px;
+    height: auto;
+}
+
+.temp-ana-controls {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.temp-ana-controls label {
+    font-weight: 500;
+}
+
+.temp-ana-graphs-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.temp-ana-graph {
+    width: 100%;
+    max-width: 900px;
+    display: none;
+}
+
+.temp-ana-graph.active {
+    display: block;
+}
+
+.temp-ana-controls select {
+    font-size: 14px;
+    margin-left: 10px;
+    color: var(--text-light);
+    background-color: var(--bg);
+    border: 1px solid var(--text-light);
+}
+
+/* Style the select when focused */
+.temp-ana-controls select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+

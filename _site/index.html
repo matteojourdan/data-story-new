@@ -368,17 +368,49 @@
 
     </p>
 
-    <div class="imm-traj-container">
-        <div class="controls">
-            <label for="imm-traj-dropdown">Cell Type:</label>
-            <select id="imm-traj-dropdown"></select>
+    <div class="temp-ana-controls">
+        <label for="tempAnaSelect">Select Graph:</label>
+        <select id="tempAnaSelect">
+            <option value="graph1">B and Plasma cells</option>
+            <option value="graph2">CD4 T cells</option>
+            <option value="graph3">C8 T cells</option>
+            <option value="graph4">DC cells</option>
+            <option value="graph5">Monocytes</option>
+            <option value="graph6">NK cells</option>
+            <option value="graph7">Platelets</option>
+        </select>
+    </div>
+
+    <div class="temp-ana-graphs-wrapper">
+        <div id="tempAnaGraph1" class="temp-ana-graph active">
+            <div class="flourish-embed flourish-chart graph-temp-ana" data-src="visualisation/26922512"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922512/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
         </div>
-        <div id="imm-traj-vis"></div>
-        <div class="figure-title">
-            <h3>Fig. 9</h3>
-            <p>Cell-type scores across time bins and severity groups.</p>
+        <div id="tempAnaGraph2" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart graph-temp-ana" data-src="visualisation/26922667"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922667/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+        <div id="tempAnaGraph3" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26922898"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922898/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+        <div id="tempAnaGraph4" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26922938"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922938/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+        <div id="tempAnaGraph5" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26922962"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922962/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+        <div id="tempAnaGraph6" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26922989"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26922989/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        </div>
+        <div id="tempAnaGraph7" class="temp-ana-graph">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26923003"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26923003/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
         </div>
     </div>
+
+    <div class="figure-title">
+        <h3>Fig. 9</h3>
+        <p>Cell-type immune scores across time bins and severity groups.</p>
+    </div>
+
+
 </section>
 
 <section id="pred_mod" class="page-section">
@@ -513,6 +545,7 @@
 
 <script src="/assets/js/scroll-animations.js"></script>
 <script src="/assets/js/active_nav.js"></script>
+<script src="/assets/js/temp_ana_selector.js"></script>
 
 <!-- D3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
