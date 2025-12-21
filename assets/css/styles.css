@@ -326,10 +326,11 @@ a {
 .intro-text {
     display: flex;
     flex-direction: column;
-    justify-content: right;
-    align-items: end;
-    width: 800px;
-    padding: 0 116px 0 116px;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin-left: 116px;
+    margin-right: 116px;
     z-index: 2; /* Ensure text is above the image */
 }
 
@@ -342,7 +343,7 @@ a {
 .introduction-section p {
     font-size: 1.2rem;
     line-height: 1.6;
-    text-align: right;
+    text-align: justify;
 }
 
 .intro-paper-snippet {
