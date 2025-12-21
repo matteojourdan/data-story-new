@@ -160,25 +160,43 @@ a {
 
 /* Fullscreen Header */
 .fullscreen-header {
+    --bg-opacity: 0.4;
+    --bg-size: 80%;
+    position: relative;
     width: 100%;
-    height: 100dvh; /* Takes up the full viewport height */
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    margin-top: 0;
-    padding: 0;
-    border-bottom: 1px solid var(--border-light);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.header-title {
-    font-size:50px;
-    font-weight: 800;
-    text-align: left;
-    color: var(--text-light); /* Set the text color */
-    margin-left: 2rem;
-    padding: 2rem ;
+.fullscreen-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/virus_home.jpg');
+    background-size: var(--bg-size);
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--bg-opacity);
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 60% 60% at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 54% at center, black 30%, transparent 70%);
 }
+
+
+.fullscreen-header .header-title {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    margin: 0 116px 0 116px;
+    z-index: 1;
+}
+
 
 .header-image {
     bottom: -80px;
