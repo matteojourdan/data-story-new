@@ -40,7 +40,7 @@ title: Home
             </div>
             <div class="research-question right">
                 <span class="question-number">2.</span>
-                <p>Are immune responses temporally structured? Do severity groups follow distinct temporal trajectories, and is severity associated with differences in amplitude, timing, or variability of immune activity?</p>
+                <p>Are immune responses temporally structured, and do different severity groups follow distinct temporal trajectories characterized by differences in the amplitude, timing, or variability of immune activity?</p>
             </div>
             <div class="research-question left">
                 <span class="question-number">3.</span>
@@ -54,8 +54,8 @@ title: Home
         <h2>Data Exploration</h2>
 
         <p>Before conducting an in-depth analysis, it is essential to first understand the patient population
-            represented in our dataset. To get a broad view of the cohort, we begin by exploring the patients’ key
-            clinical metadata such as age, sex, and sample collection site as seen in this first figure. This initial
+            represented in our dataset. To get a broad view of the cohort, we begin by <span>exploring the patients’ key
+            clinical metadata such as age, sex, and sample collection site</span> as seen in this first figure. This initial
             overview provides important insight into how patients are distributed across these variables. For example,
             while male and female patients are nearly equally represented, the distributions of age, smoking status,
             and sample collection site are clearly imbalanced. Notably, a large proportion of the samples come from older,
@@ -71,8 +71,8 @@ title: Home
             <p>Demographics of our dataset.</p>
         </div>
 
-        <p style="display: flex; flex-direction:column; margin: 70px 0 50px 0">In the rest of our analysis, two variables from our dataset will be especially useful for answering our
-            research questions: disease severity and days from onset (the number of days since symptoms began). By
+        <p style="margin: 70px 0 50px 0">In the rest of our analysis, two variables from our dataset will be especially useful for answering our
+            research questions: <span>disease severity and days from onset</span> (the number of days since symptoms began). By
             visualizing these features individually and together as well as relating them to patient characteristics,
             we can already get an initial qualitative sense of the dataset’s structure, dynamics and limitations.
             These next two figures reveal two clear imbalances in the data. First, most samples were collected within
@@ -117,7 +117,8 @@ title: Home
         </div>
 
         <div class="data-column" style="display: flex; flex-direction:row; margin: 70px 0 0 0">
-            <p>To address this, we group patients into broader severity categories and time “bins”. This reduces sparsity
+            <p>To address this, we <span>group patients into broader severity categories and time “bins”.</span>
+                This reduces sparsity
                 and gives us a more consistent structure for exploring how immune responses evolve. This figure illustrates
                 the resulting dataset layout, showing how samples are distributed across the severity groups and across our
                 chosen symptom-onset time bins. Some imbalances remain and one case stands out in particular: in the Moderate
@@ -141,8 +142,8 @@ title: Home
 <section id="diff_ana" class="page-section">
     <h2>Differential Analysis</h2>
 
-    <p>Now that we have a clearer picture of the cohort, we can start looking at what the data is really about: how
-        immune cells change their gene expression during COVID-19, and whether these changes differ by severity. To do
+    <p>Now that we have a clearer picture of the cohort, we can start looking at what the data is really about: <span>how
+        immune cells change their gene expression during COVID-19, and whether these changes differ by severity.</span> To do
         so, we first focus on a small set of single genes well known to play key roles in antiviral signalling and
         interferon responses such as ISG15, IFITM3, MX1, and OAS1. These are not meant to capture the full complexity
         of the immune response, but they offer a simple and interpretable entry point into the dataset.</p>

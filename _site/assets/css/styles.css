@@ -579,9 +579,9 @@ a {
 .sidebar-question p {
     color: var(--text-light);
     font-size: 1rem;
-    margin: 0;
     line-height: 1.5;
     text-align: left;
+    margin: 20px 0 20px 0;
 }
 
 /*Graphs*/
